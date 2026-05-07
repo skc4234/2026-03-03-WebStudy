@@ -1,0 +1,84 @@
+<!--05/07 HTML 정리 -->
+<!-- 
+	1. HTML 기본 개념
+		- 웹 페이지의 구조를 만드는 마크업 언어
+		- 브라우저에서 HTML을 해석해서 화면에 렌더링(화면 출력)
+		- 확장자 : .html, .htm
+	2. 웹 / 인터넷
+		- 웹 : 정보를 보여주는 HTML 기반의 서비스
+		- 인터넷 : 네트워크를 활용한 HTML 이동공간
+	3. 구성 요소
+		- Front-End : HTML : 화면 UI, CSS : UI 꾸미기, JavaScript : 브라우저에서 사용자 처리 담당
+		- Back-End : Java : 브라우저가 요청한 내용 처리, 데이터 관리, Oracle : 데이터 저장 장소
+	4. HTML 문서 구조
+		- <!DOCTYPE html> : HTML 버전에 해당하는 문서 읽이오기(HTML5)
+		  <html> : 문서의 시작
+		  	<head>
+		  		설정 파일
+		  		<link> : CSS 파일 읽기 => 공통으로 사용되는 CSS를 파일로 가져옴
+		  		<style> : 인라인 CSS => 파일 한개에만 제어
+		  		<script> : 자바스크립트
+		  		<meta> : 한글 변환 => UTF-8, EUC-KR
+		  		<title> : 브라우저의 탭제목 설정
+		  	</head>
+		  	<body>브라우저에 출력되는 내용</body>
+		  </html> : 문서의 끝
+
+			DOCTYPE : HTML버전 선언
+			html : 문서 루트
+			head : 문서 정보
+			body : 실제 콘텐츠
+	5. HTML 태그
+		- 텍스트 태그
+			- 제목 : h1~h6 => block 속성 => 다음줄에 출력, 굵은 글씨
+			- 문자제어 : <b>, <strong>, <font>, <sup>
+			         굵은 글씨  강조체    글씨색변경  위첨자
+			- 문단제어 : <br>, <p>, <hr>, <pre>
+			          다음줄  단락   수평선  문단 그대로 출력
+		- 멀티미디어
+			- 이미지 : <img src="이미지 파일명" title="소개">
+			- 동영상 : <embed src="동영상" width="" height="">
+			- 다른 파일 : <iframe src="다른 파일명" width="" height="">
+	-----------------------------------------------------------------
+	- 목록 출력
+		- **ul : 메뉴
+		- **ol
+		- **dl : 상세보기
+		- table : 게시판 등 일반목록
+	- 입력창               
+		- <input type=""> => type => button, submit, reset, image, text,
+		- <textarea>                 password, date, week, number, hidden, file
+		- <select>
+		- <button>
+	- 분할 태그
+		- 가로 분할 : <span>
+		- 세로 분할 : <div>
+	----------------------------------------------------
+	프로젝트 폴더 : 영문                        프로젝트
+	    |                                    |
+	 Java Resource                         src/main
+	    |                                    |
+	src/main/java => 자바 저장               webapp
+										     |
+										  WEB-INF
+										  	 |
+										  	lib => 라이브러리 저장(jar)
+										  
+	index.html / index.jsp는 파일명 없이 실행 가능
+
+	구분자 => 파일명
+	서버로 전송시 반드시 파일명 전송 
+	
+	HTML / CSS => 자바 연동 => JSP
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

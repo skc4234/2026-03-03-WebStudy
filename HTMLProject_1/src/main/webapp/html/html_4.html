@@ -1,0 +1,84 @@
+<!-- 
+	문자 제어 태그
+	small / address / ***sup / sub / b / em / ***strong / i
+	mark / marquee / blockquote / del / ins / ***font
+	
+	- small : <small>출력문</small> => 작은 글자 출력(부제목), inline 속성
+	- address : 주소 출력 => 이태릭체
+	- sup : 윗첨자 : 새글 등록 new
+	- b : bold 
+	- sub : 아래첨자
+	- em : 강조체 => <strong></strong>
+	- i : 이태릭(기울임체)
+	- mark : 형광색 글씨체
+	- marquee : 전광판 효과
+	
+	주석 ctrl+shift+/
+	주석풀기 ctrl+shift+\	
+	
+	&lt; : <
+	&gt; : >
+	&nbsp; : " " => 공백 출력
+	&raquo; : >>
+	&laquo; : <<
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 1. small 태그 -->
+<h3>&lt;small&gt; 태그</h3>
+<p>HTML 기초</p>
+<small style="color:red">웹 기초 과정</small>
+<small style="color:blue">웹 기초 과정</small>
+<hr>
+<!-- 2. address 태그 -->
+<h3>&laquo;address&raquo; : 주소 출력(필기체)</h3>
+<address>서울시 마포구 동교동 쌍용교육센터</address>
+<hr>
+<!-- 3. sup 태그 : 위첨자 / sub 태그 : 아래첨자 -->
+<p>&lt;sup&gt;, &lt;sub&gt; 태그</p>
+지금은 HTML 기초 태그 사용법 배우기<sup><img src="new.gif"></sup>
+<br>
+지금은 HTML 기초 태그 사용법 배우기<sub><img src="new.gif"></sub>
+<br>
+X<sup>2</sup>
+<br>
+H<sub>2</sub>O
+<hr>
+<!-- 4. b 태그 : 굵은 글씨체 -->
+<p>&lt;b&gt; 태그 : 굵은 글씨체</p>
+Hello HTML &nbsp; <b>HTML</b>
+<hr>
+<!-- 5. strong, em 태그 : 강조체 -->
+<p>&lt;strong&gt;, &lt;em&gt; 태그 : 강조체</p>
+<em>HTML은 태그의 출력 내용</em><br>
+<strong>HTML은 CSS+JavaScript</strong>
+<hr>
+<!-- 6. 나머지 태그들 -->
+<p>&lt;i&gt; : 기울임체, &lt;mark&gt; : 형광색 글씨체</p>
+<i>Hello HTML</i><br>
+<mark>Hello HTML</mark>
+<br>
+<p>&lt;marquee&gt; : 전광판 효과</p>
+<marquee>Hello HTML</marquee>
+<p>&lt;del&gt; : 중간에 밑줄, &lt;ins&gt; : 밑줄</p>
+<del>60,000원</del><br>
+<ins>30,000원</ins>
+<p>&lt;blockquote&gt; : 들여쓰기</p>
+<blockquote>Hello HTML</blockquote><br>
+
+<p>&lt;font&gt; : 글꼴, 글자크기 변경</p>
+<font color="red" face="궁서체">Hello HTML</font><br>
+<p>
+	주로 사용되는 태그<br>
+	문자관련 태그 : sup, <b>font</b>, b, strong<br>
+	hr, <b>br</b>, <b>p</b>, <b>pre</b>, <b>h1</b>, <b>h3</b>
+</p>
+<b>HTML/CSS : 화면 UI를 직접 만들어야 기억</b>
+</body>
+</html>
+
