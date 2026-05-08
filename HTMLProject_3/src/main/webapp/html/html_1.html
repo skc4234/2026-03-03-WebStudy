@@ -1,0 +1,124 @@
+<!-- 입력 관련 - input 태그 -->
+<!-- 
+	1. <input type="">
+		1) 버튼 종류
+		***type="button" : 일반 버튼 => 기능이 없다 => 자바스크립트로 기능 처리
+		***type="submit" : 전송 버튼 => JSP(자바에서 받아서 처리)
+		type="reset" : 초기화 버튼
+		type="image" : 이미지 버튼 => submit 기능
+		
+		2) 입력 종류
+		***type="text" : 한 줄 문자열 입력창 => ID/이름/주소 등 입력창
+		**type="password" : 비밀번호 입력창 => *****
+		
+		3) 기타
+		**type="file" : 파일 다이얼로그 창 생성
+		**type="date" : 달력 출력
+		**type="number" : spinner(번호 증가/감소)
+		type="range" : 슬라이더바(음향 조절 등)
+		***type="hidden" : 감춤 => setVisible(false)
+		**type="radio" : 라디오 버튼 => name="" 동일
+		
+	2. ***<textarea> : 여러 줄 입력
+	3. ***<select> : 콤보박스
+		- <option>combobox item</option>
+	4. ***<button> : submit 버튼
+
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- <table> - <tr>:한줄 - <th>:제목/<td>:데이터 -->
+	<table border=1 bordercolor="black" width="500" >
+		<tbody>
+		<tr>
+			<td>한줄 문자열</td>
+			<td><input type="text" size=15></td>
+		</tr>
+		<tr>
+			<td>암호 문자열</td>
+			<td><input type="password" size=15></td>
+		</tr>
+		<tr>
+			<td>파일 다이얼로그</td>
+			<td><input type="file" size=25 multiple></td>
+		</tr>
+		<tr>
+			<!-- 수량 -->
+			<td>Spinner</td>
+			<td><input type="number" min="1" max="10000"></td>
+		</tr>
+		<tr>
+			<!-- 음량/가격 조절 -->
+			<td>Slider</td>
+			<td><input type="range" min="1" max="4"></td>
+		</tr>
+		<tr>
+			<td>달력</td>
+			<td><input type="date"></td>
+		</tr>
+		<tr>
+			<td>일반 버튼</td>
+			<td><input type="button" value="로그인"></td>
+		</tr>
+		<tr>
+			<td>전송 버튼</td>
+			<td><input type="submit" value="제출"></td>
+		</tr>
+		<tr>
+			<td>초기화 버튼</td>
+			<td><input type="reset" value="초기화"></td>
+		</tr>
+		<tr>
+			<td>submit 버튼(button)</td>
+			<td><button>전송</button></td>
+		</tr>
+		<tr>
+			<td>submit 버튼(image)</td>
+			<td><input type="image" src="re_icon.png"></td>
+		</tr>
+		<tr>
+			<td>radio 버튼</td>
+			<td>
+			<input type="radio" name=sex>남자
+			<input type="radio" name=sex>여자
+			</td>
+		</tr>
+		<tr>
+			<td>체크박스</td>
+			<td>
+			<input type="checkbox">낚시
+			<input type="checkbox">운동
+			<input type="checkbox">게임
+			<input type="checkbox">여행
+			<input type="checkbox">독서
+			</td>
+		</tr>
+		<tr>
+			<td>보안</td>
+			<td><input type="hidden"></td>
+		</tr>
+		<tr>
+			<td>여러줄(멀티라인)</td>
+			<td><textarea rows="5" cols="30"></textarea></td>
+		</tr>
+		<tr>
+			<td>콤보박스</td>
+			<td>
+			<select multiple="multiple">
+			<option>업체명</option>
+			<option>주소</option>
+			<option>카테고리</option>
+			</select>
+			<input type="text" size=20>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</body>
+</html>

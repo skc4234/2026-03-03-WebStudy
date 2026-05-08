@@ -1,0 +1,128 @@
+<!-- 목록 출력 -->
+<!-- 
+	1. **<ul> : unorder list => 순서 없이 출력
+		<ul>
+			<li></li>
+			<li></li>
+			...
+		</ul>
+	2. <ol> : odrder list => 순서 있는 출력
+		<ol>
+			<li></li>
+			<li></li>
+			...
+		</ol>
+	3. <dl> : data list => 제목과 내용이 있는 리스트 출력
+		<dl>
+			<dt></dt>
+			<dd></dd>
+			...
+		</dl>
+	4. <table> : row / column
+ 		<tr>
+ 			<th></th>
+ 			<td></td>
+ 			...
+ 		</tr>
+ 		rowspan / colspan
+ 		세로 통합    가로 통합
+ 	---------------------------
+ 	- 입력창
+ 		<input> <textarea> <select> <fieldset> <label>
+ 	- 분할
+ 		<div> <span>
+ 	- 이미지 관련 : <map> <figcaption>
+ 	------------------------------------
+ 	// 트랜잭션
+ 	public void insert() {
+ 		try {
+ 			conn.setAutoCommit(false);
+ 			getConnection();
+ 			sql문 작성
+ 			conn.commit();
+ 		} catch(Exception e) {
+			conn.rollback();
+ 		} finally {
+ 			conn.setAutoCommit(true);
+ 			disConnection();
+ 		}
+ 	}
+ 	
+ 	=>
+ 	@Transactional
+ 	public void insert() {
+ 		sql문 작성
+ 	}
+ 	
+ 	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<!-- ul 태그 : 메뉴목록 -->
+	<!--
+		형식
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			...
+		</ul>
+	 -->
+	<ul style="list-style-type: armenian;">
+		<li>자바</li>
+		<li>오라클</li>
+		<li>HTML/CSS</li>
+		<li>JavaScript</li>
+		<li>JSP</li> <!-- MyBatis -->
+		<li>1차 프로젝트</li> <!-- MyBatis / Spring 구조 제작 -->
+		<li>SpringFramework</li> <!-- Rest API / Open API -->
+		<li>Ubuntu(리눅스), CI/CD</li>
+		<li>Spring-Boot</li> <!-- MyBatis+JPA : WebSocket+kafka -->
+		<li>AWS</li> 
+		<li>Vue / React</li>
+	</ul>
+	<hr>
+	<ol>
+		<li>자바</li>
+		<li>오라클</li>
+		<li>HTML/CSS</li>
+		<li>JavaScript</li>
+		<li>JSP</li> <!-- MyBatis -->
+		<li>1차 프로젝트</li> <!-- MyBatis / Spring 구조 제작 -->
+		<li>SpringFramework</li> <!-- Rest API / Open API -->
+		<li>Ubuntu(리눅스), CI/CD</li>
+		<li>Spring-Boot</li> <!-- MyBatis+JPA : WebSocek+kafka -->
+		<li>AWS</li>
+		<li>Vue / React</li>
+	</ol>
+	<hr>
+	<dl>
+		<dt>자바</dt>
+		<dd>데이터 관리(오라클 / 브라우저 연동)</dd> <!-- 제목에 대한 설명 : 상세보기 -->
+		<dt>오라클</dt>
+		<dd>데이터 저장(SQL:DML/DDL/TCL)</dd>
+		<dt>HTML/CSS</dt>
+		<dd>화면 UI</dd>
+		<dt>JavaScript</dt>
+		<dd>브라우저에서 사용자 요청 처리</dd>
+		<dt>JSP</dt>
+		<dd>브라우저 연동</dd>
+		<dt>MyBatis</dt>
+		<dd>오라클 연동 라이브러리</dd>
+		<dt>SpringFramework</dt>
+		<dd>웹 구조 통합 툴</dd>
+		<dt>CI/CD</dt>
+		<dd>지속적인 배포</dd>
+		<dt>AWS</dt>
+		<dd>서버 컴퓨터</dd>
+	</dl>
+</body>
+</html>

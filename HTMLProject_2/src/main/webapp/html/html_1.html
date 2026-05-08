@@ -1,0 +1,79 @@
+<!-- 
+	1. 구조
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<script>자바스크립트 => JQuery, Axios, Vue </script>
+		<style>내부 CSS</style> : 현재 파일에 적용
+		<link> : 외부 CSS => 모든 파일에 적용
+	</head>
+	<body>
+		화면에 출력하는 태그
+	</body>
+	</html>
+	
+	2. 태그
+		1) 텍스트 관련 태그
+		- <h1~h6>출력문</h1~h6>
+			- 사용처 : 뉴스, 게시판, 사이트 등의 제목
+			- 주로 사용 : h1, h3
+		- <p> : 단락을 나눠서 처리
+			- <p>출력문</p> / <p>단독사용
+			- 사용처 : 소개글, 기사내용, 줄거리
+		- <br> : 다음줄에 출력
+			- 단독 태그 사용
+		- <sup> : 위첨자
+			- <sup>출력문</sup>
+			- 사용처 : 새글 알림 이미지 형식으로 사용
+		- <b><strong> : 강조(bold체)
+			- <b>출력문</b> <strong>출력문</strong>
+		= <font> : 글자 설정(색상, 글꼴, 크기)
+			- CSS로 대체
+			- <font color="" face="" size="">출력문</size>
+			- 사용처 : 목차, 상세보기 등에 색상을 입혀서 강조
+
+		2) 멀티미디어
+			- <img src="" title=""> : 이미지 출력 => 시각화
+				- src=이미지파일 : gif, png, jpg
+				- title=풍선 도움말
+			- <embed src="" width="" height=""> : 동영상 출력
+			- <iframe src="" width="" height=""> : 동영상 및 다른 HTML 등 파일 출력
+			
+		3) <a href="URL"> : 링크 => 화면 이동
+			- 목록 => 상세보기 이동
+			- <... target="_blank"> : 없는 경우-현재 페이지, 있는 경우-새로운 창
+			- 사용처 : 목록 / 이미지 클릭 시 이동
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+a {
+	text-decoration: none;
+	color: black;
+	
+}
+a:hover {
+	text-decoration: underline;
+	color: green;
+}
+img:hover {
+	opacity: 0.3;
+	border-radius: 30px;
+}
+</style>
+</head>
+<body>
+	<!-- https://www.megabox.co.kr/movie-detail?rpstMovieNo=25095100 -->
+	<a href="https://naver.com" target="_blank">네이버</a>
+	<!-- a 태그는 inline 속성 -->
+	<br>
+	<a href="https://daum.net">다음</a> <!-- 현재창 -->
+	<p>
+	<a href="https://www.megabox.co.kr/movie-detail?rpstMovieNo=25095100" target="_blank">
+		<img src="../images/m1.jpg" width="300" height="350">
+	</a>
+</body>
+</html>

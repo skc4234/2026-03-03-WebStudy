@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+h3 {
+	text-align: center;
+}
+table {
+	margin: 0px auto;
+}
+</style>
+<link rel="stylesheet" href="../css/table.css">
+</head>
+<body>
+	<!-- rowspan -->
+	<table id="table_content" width="800">
+	<tbody>
+	<tr>
+		<td width="30%" rowspan="6">
+		<img src="https://www.menupan.com/restaurant/restimg/008/zzmenuimg/t1682186_z.jpg" width="360">
+		</td>
+		<td colspan="2"><h3>카주라호(KHAJURAHO)</h3></td>
+	</tr>
+	<tr>
+		<th width="10%">주소</th>
+		<td witdh="60%">서울 마포구 서교동 332-4</td>
+	</tr>
+	<tr>
+		<th width="10%">전화</th>
+		<td witdh="60%">(02) 325-1206</td>
+	</tr>
+	<tr>
+		<th width="10%">음식종류</th>
+		<td witdh="60%">기타/세계</td>
+	</tr>
+	<tr>
+		<th width="10%">주차</th>
+		<td witdh="60%">1대, 주차방법: 무료, 주차장소: 전용</td>
+	</tr>
+	<tr>
+		<th width="10%">가격대</th>
+		<td witdh="60%">10,000 ~ 20,000원</td>
+	</tr>
+	</tbody>
+	</table>
+	<br>
+	<table id="table_content" width="800">
+	<tr>
+		<td>
+		<pre style="white-space: pre-wrap;"><h3>카주라호는 인도 사진, 원색의 벽지 등으로 인도 현지의 분위기를 잘 표현하는 토속적인 내부 인테리어를 자랑하는 은은하고 조용한 인도음식전문점이다.
+
+대표메뉴는 역시 커리. 카주라호의 모든 커리에는 공장에서 가공된 식품이 아닌 본토에서 현지인의 수작업으로 만들어진 마샬라를 사용한다. 커리는 매운맛의 조절이 가능하고 절대 후회하지 않는 맛을 자랑한다.
+
+또, 인도의 대표 음식으로 잘 알려진 탄두리치킨을 비롯해서 사모사, 날가시 코프타 등 생소한 인도 음식을 접할 수 있다.</h3></pre>
+		</td>
+	</tr>
+	</table>
+	<table>
+	<tr>
+	<td>
+	<div id="map" style="width:800px;height:300px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e233f3fb087bf12a75b220e708b1e9ca&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('서울 마포구 서교동 332-4', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">카주라호(KHAJURAHO)</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
+	</td>
+	</tr>
+	</table>
+</body>
+</html>

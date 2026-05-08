@@ -1,0 +1,59 @@
+<!-- 
+ 	1. 로그인
+ 	2. 회원가입
+ 	3. 게시판 글쓰기
+ 	-------------
+ 	fieldset, label, figcaption
+ 	map, area
+ 	div, span
+ 
+ -->
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+</head>
+<body>
+	<!-- figure : 이미지 카드 => 이미지+내용 -->
+	<figure>
+	<img src="m1.jpg" width="200" height="300">
+	<figcaption>
+	<pre>
+	
+어린 나이에 형제들과 ‘잭슨 파이브’ 그룹의 막내로 데뷔하자마자
+음악적 천재성과 스타성으로 주목을 받은 ‘마이클 잭슨’.
+전세계적인 스타로 성공하지만, 그는 가족에 대한 책임감과 자신의 음악적 정체성 사이에서
+고민에 빠지게 된다.
+천재적인 뮤지션에서 시대를 초월한 아이콘이 되기까지, 그의 무대를 극장에서 확인하라!
+	</pre>
+	</figcaption>
+	<hr>
+	<!-- fieldset : 입력 창 그룹 -->
+	<!--
+		table 보다 fieldset 사용 권장
+		=> 웹 접근성 때문 => 관련된 입력을 하나로 묶어서 사용
+		<legend> 사용
+	 -->
+	<fieldset>
+		<legend>회원 정보</legend> <!-- 그룹 제목 -->
+		<label for="name">이름</label> <!-- 입력 필드 설명 -->
+		<input type="text" id="name" name="name" size=15>
+		<p>
+		<label for="email">이메일</label>
+		<input type="text" id="email" name="email" size=25>
+		<p>
+		<label for="sex">성별</label>
+		<input type="radio" name="sex">남자
+		<input type="radio" name="sex">여자
+	</fieldset>
+	
+	</figure>
+
+	<table id="table_content">
+	<tbody>
+	</tbody>
+	</table>
+</body>
+</html>
