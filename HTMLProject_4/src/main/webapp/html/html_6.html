@@ -1,0 +1,61 @@
+<!-- 
+	권장 사항
+	<fieldset> 
+	<legend>
+	<label>
+	<figure> <figcaption>
+	
+	<h1><h3>,<font>,<strong><br><hr><pre>
+	<ul>,<table>
+	<input><select><textarea>
+	type=text, button, password, submit,
+		checkbox, radio, hidden, file
+	<fieldset><legend><label><figure><figcaption>
+	<img><embed><a>
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<select>
+		<optgroup label="Back-End">
+			<option>Java</option>
+			<option>Oracle</option>
+			<option>JSP</option>
+			<option>Spring</option>
+			<option>SpringBoot</option>
+		</optgroup>
+		<optgroup label="Front-End">
+			<option>HTML</option>
+			<option>CSS</option>
+			<option>JavaScript</option>
+			<option>VueJS</option>
+			<option>React</option>
+		</optgroup>
+		<optgroup label="SE">
+			<option>Git</option>
+			<option>Docker</option>
+			<option>Kubernetis</option>
+			<option>AWS</option>
+			<option>Jenkins</option>
+		</optgroup>
+	</select>
+	<hr>
+	<!-- fieldset : 입력창 모아줌, label for와 input id 일치 -->
+	<fieldset>
+		<legend>회원 정보</legend>
+		<label for="id">ID</label><input type="text" size="20" id="id"><br>
+		<label for="name">이름</label><input type="text" size="20" id="name"><br>
+		<label for="pwd">비밀번호</label><input type="password" size="20" id="pwd">
+	</fieldset>
+	<hr>
+	<!-- 이미지 카드 : 이미지+설명 -->
+	<figure>
+		<img src="m1.jpg" title="마이클">
+		<figcaption>이미지에 대한 설명입니다...</figcaption> <!-- 이미지에 대한 설명 -->
+	</figure>
+</body>
+</html>
