@@ -1,0 +1,125 @@
+<!-- 
+	1. 내부 CSS
+		- 파일 하나 제어
+		<head>
+			<style>
+			=> ...
+			</style>
+		</head>
+	2. 인라인 CSS
+		- 태그 하나 제어
+		<a href="" style="...">
+	3. 외부 CSS
+		- 여러개 파일 제어
+		<link rel="stylesheet" href="css파일 이름">
+		
+	태그 선택자 : 구분(id, class)
+		- Jsoup, JQuery, Javascript, Ajax 등에서 사용
+	
+	
+	125page
+	CSS(Cascading Style Sheets)
+		스타일규칙(sheet)을 우선순위에 따라 적용
+	웹 페이지 디자인 규칙에 따라 우선 순위에 적용하는 언어
+	약간 수정이 가능하다
+	무료 웹 템플릿 수정
+	
+	우선순위
+		- 전체(*) < 태그 < 클래스 < 아이디 < 인라인 < !important
+	1. 선택자(태그) : 해당 태그 디자인
+		1) 종류
+			- 전체 선택자(*)
+				- 간격 조절(margin, padding 등)
+				- 글꼴 통일(font-family)
+				- 형식
+				* {
+					    속성:       값;
+					font-family: 맑은 고딕; // 반드시 시스템에 등록된 폰트 사용(import)
+				}
+				
+			- 태그 선택자(태그)
+				- 자주 사용하지 않음 => 중복 태그에 같은 css 적용되기 때문
+				- 형식
+				태그 {
+					속성: 값;
+				}
+				
+			- 아이디 선택자(id)
+				- 중복이 없는 구분자 생성
+				- 형식
+				<p id="a"></p>
+				<p id="b"></p>
+				<a id="a"></a>
+				p#a {
+				}
+				p#b {
+				}
+				a#a {
+				}
+				
+			
+			- 클래스 선택자(class)
+				- 같은 형식의 디자인 적용
+				- 형식
+				<a href="" class="a"></a>
+				<a href="" class="a"></a>
+				<a href="" class="a"></a>
+				<a href="" class="a"></a>
+				<a href="" class="a"></a>
+				a.a {
+					속성: 값;
+				}
+				
+			- 속성 선택자
+			- 후손 선택자
+			- 자손 선택자
+			- 반응 선택자
+			- 상태 선택자
+			- 구조 선택자
+			- 단위(글자크기/간격) => px
+	
+	속성은 사용자 정의가 없다
+	=> 라이브러리가 많다(bootstrap 등)
+	
+	
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+* {
+	/*전체 선택자*/
+	background-color: lime;
+}
+p {
+	color: green;
+}
+a {
+	color: black;
+	text-decoration: none; /*underline 지우기*/
+}
+b {
+	color: red;
+	display: block; /*inline 속성을 block로 변경*/
+}
+p,a,b {
+	/*여러개 태그를 동시에 적용*/
+	background-color: white;
+}
+/*구조 선택자*/
+p:nth-child(1) {
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<p>자바</p>
+	<p>오라클</p>
+	<p>HTML</p>
+	<a href="#">Spring</a>
+	<b>CI/CD</b>
+</body>
+</html>

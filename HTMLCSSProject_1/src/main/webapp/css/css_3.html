@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+li {
+	background-color: lime; 
+}
+li#green {
+	color: green;
+}
+li#pink {
+	color: pink;
+}
+li#orange {
+	color: orange;
+}
+li.yellow {
+	color: yellow;
+}
+/* 같은 선택자 => 마지막에 있는 설정 적용 */
+li.red {
+	color: red;
+}
+li.red {
+	color: yellow;
+}
+</style>
+</head>
+<body>
+	<ul>
+	<!-- 모든 li 색상이 동일  => 태그 선택자
+		li {
+			color: red;
+		}
+		
+		- 동일한 색상 여러개 => class 선택자
+		- 독립된 색상 => id 선택자
+		
+		=> 기본 선택자 : 태그, id, ***class 선택자
+		------------------태그 구분-------------
+		선택자는 CSS 뿐만 아니라 JavaScript 이벤트 처리, 크롤링 등에 사용된다
+	 -->
+		<li id="green">수박</li> <!-- green -->
+		<li class="yellow">배</li> <!-- yellow -->
+		<li class="red">사과</li> <!-- red -->
+		<li class="yellow">참외</li> <!-- yellow -->
+		<li id="pink">복숭아</li> <!-- pink -->
+		<li id="orange">오렌지</li> <!-- orange -->
+		<li class="red">딸기</li> <!-- red -->
+	</ul>
+</body>
+</html>

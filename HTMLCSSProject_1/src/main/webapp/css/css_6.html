@@ -1,0 +1,70 @@
+<!-- 
+	CSS의 핵심
+	=> *선택자
+	- 후손 선택자
+		- 태그 태그
+	- 자손 선택자
+		- 태그 > 태그
+	- 동위 선택자
+		- 태그+태그 / 태그~태그
+
+	EX)
+		<div>
+			<p></p>
+			<h1></h1>
+			<h1></h1>
+			<span>
+				<h1></h1>
+			</span>
+		</div>
+		
+		div
+		 |
+	-------------
+	|  |   |    |
+	p  h1  h1  span
+			    |
+			    h1
+			    
+	- 가장 근접 : p+h1, p~h1
+	- 자손 선택자 : div > p, div > h1
+	- 후손 선택자 : div span h1
+	
+	
+
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p {
+	color: red;
+}
+div > h1 {
+	color: blue;
+}
+div span h1 {
+	color: green;
+}
+div>p+h1 {
+	color: orange;
+}
+div>p~h1 {
+	color: pink;
+}
+</style>
+</head>
+<body>
+	<!-- div : 분할 태그, 태그 모아서 관리(JPanel) -->
+	<div>
+		<p>Hello Java</p> <!-- red -->
+		<h1>Hello Oracle</h1> <!-- orange -->
+		<h1>Hello HTML/CSS</h1> <!-- blue -->
+		<span>
+			<h1>Hello Spring</h1> <!-- green -->
+		</span>
+	</div>
+</body>
+</html>
