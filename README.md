@@ -87,9 +87,12 @@
 
 ## CSS
 
-### CSS의 종류
 
 <details><summary>숨기기/펼치기</summary>
+
+
+### CSS의 종류
+
 
 1. 내부 CSS
 	- 파일 하나 제어
@@ -111,14 +114,10 @@
 	<link rel="stylesheet" href="css파일 이름">
  	```
 
-</details>
-
- ***
+***
  
 
 ### CSS 선택자
-
-<details><summary>숨기기/펼치기</summary>
 
 
 - 선택자 우선순위
@@ -238,8 +237,70 @@
 			border: 3px solid green;
 		}
    	   	```
+	- 상태 선택자
+   		- *checked : 선택되었을때(checkbox)
+		- focus : input 태그에 포커스를 두었을
+		- enabled : 활성화
+		- disabled : 비활성화
+  	- 구조 선택자
+  	  	- \<ul>, \<ol> 태그 등에 주로 사용
+  	  	- :first-child : 형제 관계 중 첫번째 태그에만 적용
+		- :last-child : 마지막 태그에만 적용
+		- :nth-child(수열) : 수열에 맞는 태그에만 적용
+  	  	- 2n : even, 2n+1 : odd
+  	- 문자 선택자
+  		- ::before : 해당 태그 바로 앞
+  	   	- ::after : 해당 태그 바로 뒤
 
 
-	   </details>
+***
 
-	 ***
+
+### CSS 단위
+- 크기 단위 => 글자 크기
+	```
+	font-size: 16px => 100%(16px) / 50%(8px) / 150%(24px)
+		- em : 배수 단위
+		0.2em => 16*0.2 => 3.2px
+		2em => 16*2 => 32px
+ 	```
+- 색상
+	```
+	color:
+		1. 시스템 색상(red, blue, pink 등)
+		2. rgb(255,255,255)
+		3. #999999
+ 	```
+
+
+### CSS 속성
+- 박스 속성
+	- margin : 외부 간격 조절 => 태그와 태그 사이의 여백
+   		- margin-top
+		- margin-right
+		- margin-bottom
+		- margin-left
+    	- margin: 10px 10px 10px 10px => top, right, bottom, left
+	- padding : 내부 간격 조절 => 태그 안의 이미지 등 컨텐츠와의 여백
+   		- padding-top
+		- padding-right
+		- padding-bottom
+		- padding-left
+    	- padding: 10px 10px 10px 10px => top, right, bottom, left
+	- border : 테두리
+		- border-style : 선 종류
+		- border-width : 두께
+		- border-color : 테두리 색상
+		- border-collapse : 테두리 통합
+		- border-radius : 타원형
+		- border: border-style border-width border-color
+			- 순서 상관x  	
+
+
+
+</details>
+
+
+***
+
+
