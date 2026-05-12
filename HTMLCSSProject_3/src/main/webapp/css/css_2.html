@@ -1,0 +1,37 @@
+<!-- 
+	div : 태그를 모아서 관리 / 세로 분할
+		- 출력 모양이 없다 => CSS와 같이 사용
+	span
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+	width: 200px;
+	height: 200px;
+	background: blue;
+}
+.box1 {
+	margin: 30px;
+}
+.box2 {
+	margin: 30px 50px; /* 30 50 30 50 */
+}
+.box3 {
+	margin: 30px 30px 30px 30px;
+}
+/* 
+	브라우저 안에서 태그와 태그 사이에 간격(여백) 추가 : margin
+ */
+</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+</body>
+</html>
