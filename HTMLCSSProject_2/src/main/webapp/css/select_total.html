@@ -1,0 +1,99 @@
+<!-- 
+	선택자(129~160page)
+	1. 태그에 CSS 적용(우선순위)
+	기본 선택자
+		- 전체 선택자 : 전체 선택자 => 글꼴 / margin / padding
+		- 태그 선택자 : 태그마다 공통으로 사용되는 부분
+		- 아이디 선택자 : 중복없는 태그 => #
+			- 중복일 경우 JavaScript에서 오류 발생
+		- 클래스 선택자 : 중복이 있는 태그 => .
+	=> 특별한 경우가 아니라면 클래스 선택자 주로 사용
+	
+	- 속성 선택자
+		- 태그[속성=값]
+		- 태그[속성*=값]
+		- 태그[속성^=값]
+		- 태그[속성$=값]
+	- input
+		=> name, size, type
+	- a
+		=> href, target
+	- img
+		=> src, width, height
+	- table
+		=> style에서 제어
+		
+	- 후손/자손/동위 선택자(136page)
+	- 반응/상태 선택자(141page)
+	- 구조 선택자(144page)
+		:first-child
+		:last-child
+		:nth-child(수열)
+		
+		
+	- CSS 단위(148~154page)
+		- 크기 단위 => 글자 크기
+		font-size: 16px => 100%(16px) / 50%(8px) / 150%(24px)
+		- em : 배수 단위
+			0.2em => 16*0.2 => 3.2px
+			2em => 16*2 => 32px
+		- 색상
+			color: 1. 시스템 색상(red, blue, pink 등)
+				   2. rgb(255,255,255)
+				   3. #999999
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#click {
+	background: pink;
+}
+li {
+	list-style: none;
+	float: left;
+	padding: 15px;
+}
+li:first-child {
+	border-radius: 20px 0px 0px 20px;
+}
+li:last-child {
+	border-radius: 0px 20px 20px 0px;
+}
+li:nth-child(2n) {
+	background: #ff0003;
+}
+li:nth-child(2n+1) {
+	background: #800000;
+}
+</style>
+<script type="text/javascript">
+window.onload = function() {
+	let btn = document.getElementById("click");
+	btn.addEventListener("click",function() {
+		alert(("클릭"))
+	})
+}
+</script>
+</head>
+<body>
+	<button id="click">클릭1</button>
+	<button id="click">클릭2</button>
+	<button id="click">클릭3</button>
+	<button id="click">클릭4</button>
+	<button id="click">클릭5</button>
+	<hr>
+	<ul>
+		<li>홈</li>
+		<li>회원가입</li>
+		<li>맛집</li>
+		<li>레시피</li>
+		<li>여행</li>
+		<li>커뮤니티</li>
+		<li>마이페이지</li>
+	</ul>
+</body>
+</html>

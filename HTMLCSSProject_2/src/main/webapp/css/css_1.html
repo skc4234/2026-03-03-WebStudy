@@ -1,0 +1,88 @@
+<!-- 
+	선택자 종류(126~127page)
+	HTML 태그를 제어 => 태그 읽기 => 디자인(CSS), JavaScript
+										  DOM Script(태그 제어 프로그램)
+	<head>
+	<style>
+	</style>
+	<script>
+		let body = document.getElementByTagName("body"); // JavaScript
+		$('body').click(function(){})  // JQuery
+		Elements body = doc.select("body");
+		VueJS / React => 별도
+		<body v-for=""> // VueJS
+		let a = body.map(m->{}); // React
+		NextJS
+	</script>
+	</head>
+	
+	CSS 선택자
+	1. CSS는 HTML과 상관없이 독립적으로 디자인 변경이 가능하다
+	2. CSS 종류
+		- 내부 CSS
+			- 파일 1개 제어
+			<head>
+				<style>
+				선택자 {
+					속성: 값;
+					...
+				}
+				</style>
+			</head>
+		- 인라인 CSS
+			- 태그 안에서 사용
+			<a href="" style=""> // 우선순위가 높다
+		- 외부 CSS
+			- .css 파일(공통부분) => 전체 프로젝트에서 사용
+			
+	- 선택자 종류
+		- *
+		형식)
+		<>
+		<.>
+		
+		- 아이디 선택자(id)
+		<img id="img">
+		img#img {
+			속성: 값;
+		}
+		
+		- 클래스 선택자(class)
+		<a class="a">
+		<a class="a">
+		<a class="a">
+		<a class="a">
+		a.a
+	
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+img {
+	border: 3px solid green;
+	border-radius: 20px; 
+}
+.img1 {
+	width: 150px;
+	height: 200px;
+}
+.img2 {
+	width: 200px;
+	height: 300px;
+}
+</style>
+</head>
+<body> 
+	<img src="../images/m1.jpg" class="img img1">
+	<img src="../images/m2.jpg" class="img img1">
+	<img src="../images/m3.jpg" class="img img1">
+	<img src="../images/m4.jpg" class="img img2">
+	<img src="../images/m5.jpg" class="img img2">
+	<img src="../images/m6.jpg" class="img img2">
+	<img src="../images/m7.jpg" class="img img2">
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- 
+	구조 선택자
+	1. :first-child
+	2. :last-child
+	3. :nth-child(수열)
+	=> 메뉴
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+li:first-child {
+	color: green;
+	background: yellow;
+}
+li:last-child {
+	color: white;
+	background: gray;
+}
+li:nth-child(1) {
+	color: pink;
+}
+li:nth-child(2) {
+	color: magenta;
+}
+li:nth-child(3) {
+	color: blue;
+}
+li:nth-child(2n) {
+	background-color: gray;
+}
+li:nth-child(2n+1) {
+	background-color: white;
+}
+</style>
+</head>
+<body>
+	<ul>
+		<li>메뉴 1</li>
+		<li>메뉴 2</li>
+		<li>메뉴 3</li>
+		<li>메뉴 4</li>
+		<li>메뉴 5</li>
+		<li>메뉴 6</li>
+		<li>메뉴 7</li>
+		<li>메뉴 1</li>
+	</ul>
+</body>
+</html>

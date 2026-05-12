@@ -1,0 +1,55 @@
+<!-- 
+	상태 선택자
+	- *checked : 선택되었을때(checkbox)
+	- focus : 
+	- enabled : 활성화
+	- disabled : 비활성화
+	
+	**구조 선택자
+	
+	*문자 선택자
+	
+	부정 선택자
+ 
+ 	반응 선택자
+ 	
+ 
+ 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* #a:active, #b:active, #c:active {
+	color: red;
+} */
+#a:hover, #b:hover, #c:hover {
+	color: red;
+}
+input:enabled {
+	background: yellow
+}
+input:disabled {
+	background: gray;
+}
+input:checked {
+	color: white;
+}
+input:focus {
+	background: orange;
+}
+</style>
+</head>
+<body>
+	<h1>:active, :hover</h1>
+	<h3 id="a">HTML/CSS</h3>
+	<h3 id="b">HTML5/CSS3</h3>
+	<h3 id="c">JavaScript ES6</h3>
+	<h1>:focus, :enabled, :disabled, :checked, :input</h1>
+	<input type="text" size="30"><p>
+	<input type="text" size="30" disabled><p>
+	<input type="checkbox" checked>checked<p>
+</body>
+</html>
