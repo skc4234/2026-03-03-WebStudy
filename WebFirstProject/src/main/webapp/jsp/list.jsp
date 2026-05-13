@@ -65,7 +65,7 @@
 						<a href="list.jsp?page=<%=curpage<totalpage?curpage+1:curpage %>" class="btn btn-sm btn-danger">다음</a>
 					</td>
 				</tr>
-			</table>
+			</table>   
 		</div>
 	</div>
 </body>

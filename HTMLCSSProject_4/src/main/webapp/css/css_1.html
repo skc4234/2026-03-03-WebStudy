@@ -1,0 +1,155 @@
+<!--
+	속성 : CSS에서 제공하는 속성
+	- 박스 속성
+		- margin : 외부 간격 조절
+			- margin: 10px 10px 10px 10px => margin-top margin-right margin-bottom margin-left
+			- margin: 10px 20px => top/bottom 10px, right/left 10px
+			- 태그와 태그 사이 간격
+			- 버튼 여러개 출력 => 간격
+			- margin: 0px auto; => 가운데 정렬
+		- padding : 내부 간격 조절
+			- padding: top right bottom left
+			- 태그 안의 글자/이미지 에 여백을 줄때 사용
+			- <th>,<td>  <img>ss
+			- margin과 사용법 같음
+		- border : 테두리
+			- border-width: 테두리 두꼐
+			- border-style: solid, dotted, dashed, 
+			- border-color: 테두리 색상
+			- border-radius: 타원형
+			- border: font style color
+				- 순서 상관 x
+	
+	
+	- 가시 속성
+		- display: 
+			- inline : 가로로 출력
+				- <img>, <a>, 글자 태그, <span>, <input>, <select>, <textarea>
+				- 자동으로 해당 크기만큼 차지
+			- block : 세로로 출력
+				- <h1>~<h6>, <br>, <p>, <ul><ol><li>, <dl>, <div>
+				- 한 줄 전체 차지			
+		- display: block; // inline 속성을 block으로 변경
+		- display: inline;
+			
+		- <table> 사용 자제 => display:table
+		- <tr> : display:table-row
+		- <td> : display:table-cell
+		- <th> : display:table-column
+		------------------------------- 테이블 디자인
+			
+	- 배경 속성
+		- background
+			- background-color: 색상 - 시스템 색상 / #333333 / rgba(255,255,255,0.1)
+																			투명도
+			- background-image: url('이미지 경로');
+				- 이미지 출력
+			- background-size: 이미지 크기
+			- background: color, 이미지, 크기 모두 가능
+		
+	- 텍스트 속성
+		- font:
+		- text:
+	- 위치 속성
+		- position:
+			- static(default)
+			- absolute(절대좌표)
+			- relative(태그)
+			- fixed(고정좌표)
+	- 유동 속성
+		- float:
+		- z-index:
+	
+	- 레이아웃 + 시맨틱 태그
+		- flex:
+		- grid:
+		
+		화면구도
+		- header:
+		- section:
+		- nav:
+		- footer:
+		- aside:
+	
+	로고      검색기     => header
+	--------------------
+	   메뉴1 메뉴2 메뉴3 ... => nav
+	로그인  | 
+	광고   |  실제 출력물  => section
+		  |
+		  |
+	-------------------
+	개인정보방침 / 회사 정보 => footer
+	-------------------
+		
+		
+	- 반응형 웹
+		- media 태그 => 해상도에 따라 화면 출력이 달라진다
+			- CSS가 어렵다 => 사용 빈도가 줄음
+	
+	
+	Kotlin   Swift
+	   |       |
+	   ---------
+	    Flutter
+	    React Native
+
+	- BootStrap / *Tailwind
+
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div input {
+	margin-left: 100px;
+}
+.box {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	margin-top: 100px;
+}
+.box1 {
+	width: 200px;
+	height: 250px;
+	background-color: black;
+	color: white;
+	padding-top: 80px;
+	/* padding-left: 20px; */
+	padding: 90px;
+}
+.box2 {
+	width: 200px;
+	height: 150px;
+	background-color: blue;
+	margin-top: 20px;
+	border: 3px solid red;
+}
+.box3 {
+	width: 200px;
+	height: 200px;
+	background-color: green;
+	margin-top: 20px;
+	border-radius: 30px 50px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<input type="button" value="좋아요">
+		<input type="button" value="찜하기">
+		<input type="button" value="예약하기">
+	</div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box1">
+		Hello CSS
+	</div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+</body>
+</html>
