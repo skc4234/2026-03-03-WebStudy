@@ -295,8 +295,51 @@
 		- border-radius : 타원형
 		- border: border-style border-width border-color
 			- 순서 상관x  	
+- 가시 속성
+	- display: none, block, inline, inline-block
+   	- inline 속성 : 자동으로 해당 크기만큼 차지
+  		- \<img>, \<a>, 글자 모양 태그(\<b>, \<sup> 등), \<span>, \<input>, \<select>, \<textarea>
+	- block 속성 : 한 줄 전체 차지
+   		- \<h1>~\<h6>, \<br>, \<p>, \<ul>\<ol>\<li>, \<dl>, \<div>
+	- none : 화면에 보이지 않음 => JavaScript 등으로 볼 수 있게
+   	```
+    <div style="display: none;">
+    
+    // a 태그로 JQuery 이용해서 보이게 처리
+	<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript">
+	let i=0;
+	$(function(){
+		$('a').click(function() {
+			if(i==0) {
+				$('a').text("닫기")
+				i=1;
+				$('div').show();
+			}
+			else {
+				$('a').text("더보기")
+				i=0;
+				$('div').hide();
+			}
+		})
+	})
+	</script>
+    ```
 
 
+- 배경 속성
+	- background
+ 		- background-color : 배경색 지정(원색은 되도록 사용 자제)
+		- background-image : 배경에 이미지 삽입
+   			- : url('이미지 주소')
+		- background-repeat : 이미지 반복 여부(타일)
+    		- : no-repeat : 반복 없애기
+		- background-position : 배경 이미지 위치 지정
+		- background-size : 배경 이미지 크기 지정
+		- background-attachment : 배경 고정 여부
+    		- : fixed : 스크롤 이동해도 배경 이미지는 고정
+
+		
 
 </details>
 
