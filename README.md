@@ -325,6 +325,19 @@
 	})
 	</script>
     ```
+	- 가시 속성(display: none, visibility: hidden, opacity: 0.0) 차이
+    
+    	<img width="324" height="533" alt="Image" src="https://github.com/user-attachments/assets/83d6d82f-9201-4605-99ff-fadb3b124148" />
+
+  	- overflow:
+		- 공간을 벗어나는 경우
+  	  	- visible : 공간을 벗어나도 모두 출력한다
+  	  	- hidden : 공간까지만 출력한다
+  	  	- scroll : 강제로 스크롤 바 생성
+  	  	- auto : 컨텐츠가 공간을 벗어날 경우 자동으로 스크롤 바 생성
+	- z-index:
+		- 레이어 위에 원하는 태그를 올리는 경우
+    	- 숫자가 클수록 앞에 위치한다
 
 
 - 배경 속성
@@ -339,7 +352,22 @@
 		- background-attachment : 배경 고정 여부
     		- : fixed : 스크롤 이동해도 배경 이미지는 고정
 
-		
+
+- 글자 속성
+	- font / text
+		- *color* : 글자 색상
+		- *font-size* : 글자 크기 => px / em
+		- font-weight : 두께(normal / bold, 100~900)
+		- *font-family* : 글꼴(시스템 글꼴 / 구글 폰트)
+		- *text-align* : 정렬(left, center, right)
+		- *text-decoration* : underline / none => a 태그 밑줄 지우는 용도
+		- text-transform : 대소문자 변환 => 거의 안쓰임
+		- letter-spacing : 글자 간격
+		- word-spacing : 단어 간격
+		- *line-height* : 줄 간격(자간)
+		- *white-space* : 자동 줄바꿈
+		- text-shadow : 그림자 효과
+		- *font* : 단축 속성
 
 </details>
 
