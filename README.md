@@ -325,6 +325,10 @@
 	})
 	</script>
     ```
+    ```
+	가시 속성(display: none, visibility: hidden, opacity: 0.0) 차이
+    
+    ```
 
 
 - 배경 속성
@@ -339,7 +343,9 @@
 		- background-attachment : 배경 고정 여부
     		- : fixed : 스크롤 이동해도 배경 이미지는 고정
 
-		
+
+- 글자 속성
+  	- 
 
 </details>
 
