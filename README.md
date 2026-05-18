@@ -375,3 +375,63 @@
 ***
 
 
+
+## JSP
+
+
+### Servlet / JSP
+- Servlet
+	- 초창기의 자바중심 웹 프로그램
+   	- 장점
+  		- 소스가 노출되지 않음 => 보안성이 높다
+   	  	- 자바중심이기 때문에 호환성/유지보수가 좋다
+   	- 단점
+   	  	- 수정 후에 바로 확인할 수 없다
+		- 소스가 길고 CSS나 JavaScript 처리가 어렵다
+- JSP
+  	- HTML 중심의 웹 스크립트 언어
+  	- 장점
+  	  	- Servlet의 단점 보완
+  	  	- 수정 후에 바로 컴파일한다
+  	  	- 소스가 짧고 HTML과 JAVA의 구분이 확실하다
+  	  	- HTML 중심이기 때문에 CSS나 JavaScript 추가가 쉽다
+  	- 단점
+  	  	- 소스가 노출되기 쉽고 확장성이 안좋다
+
+- Servlet의 생명 주기
+	- init() => _jspInit()
+   		- 초기화(생성자 대체)
+       	- DB 연결 준비나 설정파일(web.xml)을 읽는다
+       	- 공통자원을 초기화 한다
+    - service() => _jspService()
+      	- 클라이언트가 요청할때마다 실행하고 화면을 출력한다
+      	- doGet()
+      		- 요청 방식이 GET 방식인 경우 호출
+      	 	- 보통 화면 출력 담당
+      	- doPost()
+      	  	- 요청 방식이 POST 방식인 경우 호출
+      	  	- 사용자 요청 처리 담당
+      	- service()는 GET과 POST를 동시에 처리한다
+      	- GET : URL 뒤에 "?키=값"형식으로 데이터를 전송한다
+      		- 값이 노출되기 때문에 간단한 검색어나 상세보기 등에 사용된다
+      	- POST : 내부적으로 값을 감춰서 전송한다
+      		- 보안이 필요하거나 보낼 데이터가 많은 경우 사용한다
+    - destroy() => _jspDestroy()
+  		- 서버 종료 / 새로고침 / 화면 이동 시 자동으로 Servlet이 제거된다
+      	- DB 연결 해제, 메모리 해제, 로그 저장 등의 기능 수행
+      	- 한번만 호출된다
+     
+### JSP 기초
+- JSP 동작 과정
+	- 브라우저 URL을 이용해서 요청 => 반드시 파일명 포함
+   		- 데이터는 GET/POST 방식으로
+   	- 웹 서버에서 요청 받기
+   		- 톰캣이 JSP파일을 자바로 변경한다
+   	   	- 변경된 자바 파일은 컴파일해서 .class파일로 만들고 HTML은 메모리에 저장한다
+   	   	- 자바 파일로 요청을 수행하고 출력버퍼에 저장된 HTML을 브라우저에 읽어서 출력한다
+- 지시자 : page / include / taglib
+- 스크립트릿 : <% %> <%= %> <%! %>
+- 내장 객체
+	- request / response / session / pageContext / out / application / config / exception / page
+ - 상태 관리 : session / cookie
+ - 데이터베이스 연동 : JDBC / ConnectionPool
