@@ -369,6 +369,20 @@
 		- text-shadow : 그림자 효과
 		- *font* : 단축 속성
 
+- 위치 속성
+	- position:
+   		- static : 기본 HTML 흐름에 따라 배치(default)
+    	- absolute : 절대 좌표(가장 가까운 태그 기준으로 배치)
+       	- relative : 상대 좌표(원래 자리에서 지정한 좌표만큼 이동)
+       	- fixed : 고정 좌표(스크롤 영향x)
+       	- sticky : 스크롤 시 고정됨
+
+
+- 유동 속성
+	- float: left/right
+   	- 사용처 : 이미지 카드, 메뉴바에서 메뉴와 로그인 버튼 양쪽으로 분리할때 사용
+   	- flex/grid로 대체 가능
+
 </details>
 
 
@@ -435,3 +449,52 @@
 	- request / response / session / pageContext / out / application / config / exception / page
  - 상태 관리 : session / cookie
  - 데이터베이스 연동 : JDBC / ConnectionPool
+
+### JSP 지시자
+- JSP 페이지가 실행될 때 필요한 정보 주입
+1. page
+    - 가장 많이 사용되는 지시자
+	- 형식) <%@ page 속성="값" %>
+	- 중요한 속성 여러개
+		- info="설명" : 페이지 정보 기록
+		- language="java" : 사용할 언어 지정
+		- contentType="text/html" : 어떤 형태로 출력할 것인지 지정
+		- import="라이브러리" : 자바 라이브러리나 사용자 지정 라이브러리를 가져와서 사용할 경우
+			- 유일하게 page 지시자를 중복해서 사용할 수 있다
+     	- buffer="8kb" : jsp 페이지 출력 크기 지정, 8kb가 디폴트
+    	- errorPage="이동할 페이지" : 현재 페이지에서 예외가 발생할 경우 에러 페이지로 이동한다
+       	- isErrorPage="true" : 에러 처리 담당 페이지 여부 확인, false가 디폴트
+       	- pageEncoding="UTF-8" : 한글 사용을 위해서 반드시 UTF-8 또는 EUC-KR 지정
+2. include
+	- 파일을 여러개 모아서 한번에 컴파일 하는 용도
+	- 형식) <%@ include file="" %>
+	- 사용 빈도가 거의 없다
+3. taglib
+
+
+
+### JSP 내부 객체
+- JSP 컨테이너가 제공하는 미리 생성된 객체(9개)
+1. request
+	- 사용자 요청 정보, 서버, 브라우저 정보 등을 담고 있다
+	- getServerName() : 서버 이름(IP)
+	- getProtocol() : 사용중인 프로토콜
+	- getMethod() : GET/POST 방식 여부
+	- getRequestURL() : 주소 전체 출력
+	- *getRequestURI()* : 기본 주소 제외한 식별 가능한 식별자
+	- *getContextPath()* : 현재 웹의 컨텍스트 경로
+	- getRemoteAddr() : 요청한 사용자의 IP
+	- getServerPort() : 요청한 사용자의 PORT 번호
+	- *getParameter()* : 지정된 파라미터의 단일값 반환
+	- *getParemeterValues()* : 지정된 파라미터의 모든 값 반환
+	- setCharacterEncoding("UTF-8") : POST방식으로 반환된 문자열 형식을 한글로 변환
+	- setAttribute() : 데이터 추가
+	- getAttribute() : 데이터 읽기
+3. response
+4. out
+5. session
+6. application
+7. pageContext
+8. page
+9. config
+10. exception
