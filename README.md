@@ -472,29 +472,67 @@
 3. taglib
 
 
+### JSP 액션 태그
+- 형식) <jsp:forward page="">
+- **include** : 특정 위치에 다른 jsp 추가
+	- include 지시자와 같은 기능이지만 액션 태그를 더 많이 사용한다
+- forward : 파일 이동 => redirect와 달리 request된 값을 유지한다
+- useBean : 객체 생성
+- setProperty
+- getProperty
+- param : 추가적인 데이터가 있는 경우 사용
+
+
 
 ### JSP 내부 객체
 - JSP 컨테이너가 제공하는 미리 생성된 객체(9개)
-1. request
+1. **request** : HttpServletRequest
 	- 사용자 요청 정보, 서버, 브라우저 정보 등을 담고 있다
 	- getServerName() : 서버 이름(IP)
 	- getProtocol() : 사용중인 프로토콜
 	- getMethod() : GET/POST 방식 여부
 	- getRequestURL() : 주소 전체 출력
-	- *getRequestURI()* : 기본 주소 제외한 식별 가능한 식별자
-	- *getContextPath()* : 현재 웹의 컨텍스트 경로
+	- **getRequestURI()** : 기본 주소 제외한 식별 가능한 식별자
+	- **getContextPath()** : 현재 웹의 컨텍스트 경로
 	- getRemoteAddr() : 요청한 사용자의 IP
 	- getServerPort() : 요청한 사용자의 PORT 번호
-	- *getParameter()* : 지정된 파라미터의 단일값 반환
-	- *getParemeterValues()* : 지정된 파라미터의 모든 값 반환
+	- **getParameter()** : 지정된 파라미터의 단일값 반환
+	- **getParemeterValues()** : 지정된 파라미터의 모든 값 반환
 	- setCharacterEncoding("UTF-8") : POST방식으로 반환된 문자열 형식을 한글로 변환
-	- setAttribute() : 데이터 추가
-	- getAttribute() : 데이터 읽기
-3. response
-4. out
-5. session
-6. application
-7. pageContext
-8. page
-9. config
-10. exception
+	- void setAttribute("키", "값") : 데이터 추가
+	- Object getAttribute("키") : 데이터 읽기
+2. **response** : HttpServletResponse
+	- 응답 정보
+	- setHeader() : HTTP 응답 Header를 설정한다 / 파일을 다운로드 할 수 있다
+	- addCookie() : 쿠키를 설정한다
+		- 헤더와 쿠키를 동시에 전송할 수 없다 => 하나만 선택해서 전송
+	- setContentType("text/html; charset=UTF-8") : 출력되는 브라우저의 contentType 설정(한글 등)
+	- **sendRedirect("이동할 파일명")** : 지정된 파일로 이동, GET 방식
+		- request 정보가 초기화 된다
+4. out : JspWriter
+	- 출력 버퍼(실행 시 HTML을 저장하는 메모리 공간) 제어
+	- 사용자 당 출력 버퍼는 한개씩만 생성
+	- 브라우저에 읽으면 자동으로 reflush(autoFlush)
+	- println() : 브라우저에 출력
+	- write() : 문자열 출력
+	- getBufferSize() : 출력 버퍼 전체 크기
+	- getRemaining() : 현재 사용하지 않는 버퍼 크기
+6. **session** : HttpSession
+	- 서버에 필요한 데이터 저장
+8. **application** : ServletContext
+	- 서버 정보, 로그 정보, 자원 정보 등
+	- getServerInfo() : 서버 정보
+	- **getRealPath()** : 실제 저장되는 위치 => 자원 정보
+	- **getInitParameter()** : 로그 정보
+		- web.xml에 저장된 param 정보를 읽을 수 있다(보안성)
+	- log("message") : 로그 파일에 message를 기록한다
+10. pageContext : PageContext
+	- 내장 객체 관리, <jsp:include>, <jsp:forward> 관리
+	- include("페이지") : 해당 페이지를 포함시킨다 => request 정보를 공유한다
+	- forward("페이지") : 화면을 이동한다 => URL 주소는 변경 X
+12. page : Object
+	- 자신의 객체(this)
+14. config : ServerConfig
+	- 환경설정 파일(web.xml)
+16. exception : Exception
+	- 예외 처리
