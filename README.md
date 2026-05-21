@@ -392,6 +392,9 @@
 
 ## JSP
 
+<details><summary>숨기기/펼치기</summary>
+
+
 
 ### Servlet / JSP
 - Servlet
@@ -536,3 +539,55 @@
 	- 환경설정 파일(web.xml)
 16. exception : Exception
 	- 예외 처리
+
+
+### Javabeans
+```
+<jsp:useBean id="bean" class="com.sist.bean.MemberBean">
+	<jsp:setProperty name="bean" property="*"/>
+	<%-- useBean의 id와 setProperty의 name이 같아야함 --%>
+</jsp:useBean>
+...
+이름:<jsp:getProperty property="name" name="bean"/><br>
+나이:<jsp:getProperty property="age" name="bean"/><br>
+성별:<jsp:getProperty property="sex" name="bean"/><br>
+주소:<jsp:getProperty property="address" name="bean"/><br>
+전화:<jsp:getProperty property="phone" name="bean"/><br>
+소개:<jsp:getProperty property="content" name="bean"/><br>
+```
+
+
+
+### Session / Cookie
+
+- 요약
+
+
+ |구분|cookie|session|
+ |----|------|------|
+|저장위치|컴퓨터(브라우저)|접속한 서버|
+|보안|낮다|높다|
+|용량|적다(문자열 저장)|크다(Object)|
+|유지|오래간다|로그아웃/브라우저 종료시| 
+|속도|빠르다|cookie에 비해 느리다| 
+|용도|최근 방문/라이센스 정보|로그인 상태/장바구니/예약|
+		 	     
+- HTTP 프로토콜은 상태가 없다 => 지속적인 연결을 위해서 세션과 쿠키 사용
+- Session
+	- 서버가 자신에게 접속한 클라이언트의 정보를 갖고 있다
+   	- 클라이언트 당 1개씩만 생성된다
+   	- 브라우저 종료/로그아웃 시 사라진다
+   	- Object 단위로 저장한다
+   	- 로그인 상태 유지, 회원 일부 정보, 장바구니, 관리자 인증, 예약 등에 사용된다
+-  Cookie
+	- 클라이언트 정보가 브라우저에 저장된다
+   	- 세션에 비해 용량이 작고 문자열만 저장한다
+   	- 브라우저를 종료해도 쿠키는 남아있다
+   	- 자동 로그인, 최근 방문, 팝업창(오늘 하루 보지 않음) 등에 사용한다
+
+
+
+
+</details>
+
+******
