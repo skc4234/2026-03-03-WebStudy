@@ -579,14 +579,72 @@
    	- 브라우저 종료/로그아웃 시 사라진다
    	- Object 단위로 저장한다
    	- 로그인 상태 유지, 회원 일부 정보, 장바구니, 관리자 인증, 예약 등에 사용된다
+   	- 주요 메소드
+   	```
+	1. 저장 => setAttribute(key, value) => key가 중복이면 덮어쓴다 => 덮어쓰는 경우 : 회원 수정
+	2. 읽기 => getAttribute(key)
+	3. 전체 삭제 => invalidate()
+	4. 장바구니 삭제 => removeAttribute(key)
+	----------------------------------
+	5. getId() => 각 클라이언트(브라우저) 당 1개만 배정된 고유번호
+	6. isNew() => 처음 저장된 상태 => 장바구니 기능 활용
+    7. setMaxInactiveInterval(초단위) => 세션 유지 시
+    ```
 -  Cookie
 	- 클라이언트 정보가 브라우저에 저장된다
    	- 세션에 비해 용량이 작고 문자열만 저장한다
    	- 브라우저를 종료해도 쿠키는 남아있다
    	- 자동 로그인, 최근 방문, 팝업창(오늘 하루 보지 않음) 등에 사용한다
+   	- **헤더와 쿠키를 동시에 전송할 수 없다** => HTML 만들기 전에 쿠키를 먼저 전송해야 한다
+   	- 쿠키 작성법
+   	```
+	// 번호 받기
+	String no = request.getParameter("no");
+	// 1. 쿠키 생성
+	Cookie cookie = new Cookie("food_"+no, no);
+	
+	// 2. 기간 정하기
+	cookie.setMaxAge(60*60*24); // 하루만 저장
+	// session => default 1800초(30분), cookie는 default 없음 => 설정 필요
+	// 쿠키 삭제 => cookie.setMaxAge(0);
+	
+	// 3. 저장위치 지정
+	cookie.setPath("/");
+	
+	// 4. 해당 브라우저로 쿠키 전송
+	response.addCookie(cookie);
+	
+	// 5. 화면 이동
+	response.sendRedirect("../main/main.jsp?mode=2&no="+no);
+	// GET 방식, request 초기화
+    ```
 
-
-
+### Connection Pool
+- DBCP(DataBase ConnectionPool)
+	- 기존 JDBC 방식은 데이터베이스 연결, sql문장, 결과 받기를 매번 수행
+   		- 데이터베이스 연동 시간이 가장 오래 걸림
+       	- => 데이터베이스 연결 객체 미리 생성
+    - Connection 객체를 미리 생성하고 Pool에 집어넣어 필요시마다 사용-회수 한다
+  	- 톰캣 서버에 server.xml 파일에 DB 관련 파일을 작성한다
+  	```
+   	driverClassName="oracle.jdbc.driver.OracleDriver" => 드라이버 설정
+    url="" => 데이터베이스 주소
+    username="" => 이름
+    password="" => 비밀번호
+    maxActive="10" => 동시에 사용할 수 있는 Connection 개수(default 8개)
+    maxIdle="10" => 항상 유지하고 최소 Connection 개수(default 8개)
+    maxWait="-1" => 반환까지 기다리는 시간
+    auth="Container" => 데이터베이스 관리 주체
+    name="" => 별칭
+    type="javax.sql.DataSource" => 사용 라이브러리
+	```
+	- 실제 사용
+   	```
+	// Pool 연결
+	Context init = new InitialContext();
+	Context c=(Context)init.lookup("java://comp/env/"); // c:\\
+	DataSource ds = (DataSource)c.lookup("별칭");
+    ```
 
 </details>
 
