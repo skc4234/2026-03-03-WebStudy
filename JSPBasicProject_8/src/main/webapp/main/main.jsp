@@ -1,3 +1,4 @@
+<%@page import="com.sist.jsp.JspChange"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%--
@@ -138,15 +139,44 @@
 		1. 메인 페이지 => 조원 공동
 		2. 회원 => 로그인 => 메뉴 조절
 		3. 메뉴별 역할
-	*/
 	
+		
+		session의 주요 메소드
+		=> 브라우저별로 구분
+		1. 저장 => setAttribute(key, value) => key가 중복이면 덮어쓴다
+		2. 읽기 => getAttribute(key)
+		3. 전체 삭제 => invalidate()
+		4. 장바구니 => removeAttribute(key)
+		----------------------
+		덮어쓰는 경우 : 회원 수정
+		5. getId() => 사용자별 구분 => WebSocket
+		6. isNew() => 처음 저장된 상태
+		
+	*/
+	/*
+		main.jsp에서 데이터 전송 받는 경우
+		포함하고 있는 jsp와 데이터 공유 => <jsp:include>
+		main.jsp : mode 변수 받아서 화면 변경
+		*.jsp : 공유받은 데이터로 화면 출력
+		
+		
+		request 공유하는 법
+		- include
+		- forward
+	*/
+	String mode = request.getParameter("mode");
+	if(mode==null) mode="1";
+	int index = Integer.parseInt(mode);
+	String jsp = JspChange.change(index);
 %>
+<%-- CSS/JavaScript =>  main에 존재 --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/cookie.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -165,9 +195,9 @@
 	%>
 		<form action="../member/login.jsp" method="post">
 		<div class="logform text-center">
-			ID : <input type="text" name=id size=15 class="input-sm">
+			ID : <input type="text" name=id size=15 class="input-sm" required>
 			&nbsp;
-			PW : <input type="password" name=pwd class="input-sm" size=15>
+			PW : <input type="password" name=pwd class="input-sm" size=15 required>
 			&nbsp;
 			<button class="btn-sm btn-primary">로그인</button>
 		</div>
@@ -176,12 +206,14 @@
 		else { %>
 		<form method="post" action="../member/logout.jsp">
 		<div class="logform text-center">
-			<%=session.getAttribute("name") %>님 로그인 되었습니다&nbsp;
+			<%=session.getAttribute("name") %>
+			(<%=((String)session.getAttribute("admin")).equals("y")?"관리자":"사용자" %>)님 로그인 되었습니다&nbsp;
 			<button class="btn-sm btn-primary">로그아웃</button>
 		</div>
 		</form>
 	<% } %>
 	</div>
 </div>
+<jsp:include page="<%=jsp %>"></jsp:include>
 </body>
 </html>
