@@ -455,7 +455,7 @@
 
 ### JSP 지시자
 - JSP 페이지가 실행될 때 필요한 정보 주입
-1. page
+1. **page**
     - 가장 많이 사용되는 지시자
 	- 형식) <%@ page 속성="값" %>
 	- 중요한 속성 여러개
@@ -472,8 +472,9 @@
 	- 파일을 여러개 모아서 한번에 컴파일 하는 용도
 	- 형식) <%@ include file="" %>
 	- 사용 빈도가 거의 없다
-3. taglib
-
+3. **taglib**
+	- prefix
+	- uri
 
 ### JSP 액션 태그
 - 형식) <jsp:forward page="">
@@ -646,6 +647,60 @@
 	DataSource ds = (DataSource)c.lookup("별칭");
     ```
 
+
+### EL / JSTL
+- EL(Expression Language) : 표현식
+	- JSP의 <%= %> 태그 대체
+   	- HTML과 Java의 분리
+   	- 사용법 : ${값} => request나 session에 저장되어 있는 값만 출력 가능
+  	- 연산자
+  		- 산술연산자(+,-,/,%)
+  	   		- +는 순수한 덧셈만 가능, 문자열 결합은 +=
+  	    - 비교연산자(==, !=, <=, >=)
+  	    - 논리연산자(and, or, not)
+  	    - 삼항연산자(조건식?값1:값2)
+  	- 내장 객체
+  		- request.setAttribute("키",값) => ${"키"}
+  	 	- session.setAttribute("키",값)
+  	  	- pageContext.request.contextPath => 경로
+- JSTL(Java Standard Tag Library)
+  	- 대부분 자바에서 처리후에 전송하기 때문에 사용빈도는 낮다
+	- core
+   		```
+     	<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+		<c:set var="list" values="<%=list%>"> // 값 주입
+
+		// 중요
+     	<c:forEach var="i" begin="1" end="10" step="1">
+     	//<c:forEach var="name" items="${list }" varStatus="s"> // List 형식에서도 사용가능
+		${i}
+    	</c:forEach>
+
+     	<c:forTokens items="red,blue,green" delims="," var="color">
+
+     	<c:if test="조건문">
+     	// else가 없다 => c:otherwise 활용
+
+     	<c:choose>
+     		<c:when test="조건문">
+     		...
+     		<c:otherwise>
+     	</c:choose>
+
+     	<c:redirect>
+     	```
+   	- fmt
+  		```
+   		// 날짜/숫자 변경 시 사용
+   		// 보통 DB에서 변경해서 오기때문에 사용빈도 낮음
+   		<fmt:formatDate value="${today }" pattern="yyyy-MM-dd"/>
+   		<fmt:formatNumber value="1234567" type="currency"/>
+   		```
+   	- fn
+		```
+   		// String 클래스의 메소드 활용
+		${fm:length()} 등
+   		```
 </details>
 
 ******
