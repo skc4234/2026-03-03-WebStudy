@@ -253,16 +253,18 @@ public class BoardDAO {
 			 *    
 			 */
 			// 질문 빼고 gs값 +1
+			// 새 답변을 최상단으로
 			sql="UPDATE jspreplyboard SET group_step=group_step+1 "
 					+ "WHERE group_id=? AND group_step>?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, gt);
+			ps.setInt(1, gi);
 			ps.setInt(2, gs);
 			ps.executeUpdate();
 			
 			// 3. 답변 insert
+			// 답변 추가
 			sql="INSERT INTO jspreplyboard(no,name,subject,content,pwd,group_id,group_step,group_tab,root) "
-					+ "VALUE(jrb_no_seq.nextval,?,?,?,?,?,?,?,?)";
+					+ "VALUES(jrb_no_seq.nextval,?,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getSubject());
@@ -274,11 +276,33 @@ public class BoardDAO {
 			ps.setInt(8, pno);
 			ps.executeUpdate();
 			
-			// 4.?
+			// 4. 답변 개수 체크
+			// Depth 증가
+			sql="UPDATE jspreplyboard SET depth=depth+1 WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			ps.executeUpdate();
 			
 			
-			
-			conn.commit();
+			conn.commit(); // All or Nothing => 원자성
+			// 여러개의 SQL 문장 => 순서확인
+			/*
+			 * 1. 상위 게시물의 정보
+			 * => 답변 정보 : group_id : 질문,답변,대댓글 그룹번호
+			 * 			   group_step : 답변 출력 순서
+			 * 			   group_tab : 간격 설정
+			 *             root : 상위 게시물 / depth : 답변 개수
+			 * 	- 질문 지우기
+			 * 		- 비밀번호 확인
+			 * 		- depth=0(답변이 없는 경우) : 본인 게시물 삭제 가능
+			 *      - dept>0(답변이 있는 경우) : 제목/내용만 변경 가능 / 삭제 불가
+			 *      					=> 관리자가 삭제 가능
+			 *      
+			 *  - MVC 응용 : 대댓글 / 실시간 채팅 / 실시간 상담
+			 *  - Spring AI : 챗봇
+			 *             
+			 *             
+			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -298,4 +322,70 @@ public class BoardDAO {
 	
 	// 4-6. 삭제하기 => SQL 문장 4개 수행
 	// ==> 트랜잭션 처리(일괄)
+	public boolean boardDelete(int no, String pwd) {
+		boolean bCheck=false;
+		try {
+			getConnection();
+			conn.setAutoCommit(false);
+			// 1. 비밀번호,root,depth 검색
+			String sql="SELECT pwd,root,depth FROM jspreplyboard WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			String db_pwd = rs.getString(1);
+			int db_root = rs.getInt(2);
+			int db_depth = rs.getInt(3);
+			rs.close();
+			
+			// 2. 비밀번호 일치 여부
+			if(db_pwd.equals(pwd)) {
+				bCheck=true;
+				// 3. 삭제 가능한 게시물(depth==0) 여부
+				if(db_depth==0) {
+					// 3-1. depth==0 => delete
+					sql="DELETE FROM jspreplyboard WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setInt(1, no);
+					ps.executeUpdate();
+				}
+				else {
+					// 3-2. depth>0 => update
+					String msg="관리자가 삭제한 게시물입니다";
+					sql="UPDATE jspreplyboard SET subject=?, content=? "
+							+ "WHERE no=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, msg);
+					ps.setString(2, msg);
+					ps.setInt(3, no);
+					ps.executeUpdate();
+				}
+				sql="UPDATE jspreplyboard SET "
+						+ "depth=depth-1 "
+						+ "WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, db_root);
+			}
+			
+			conn.commit();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.setAutoCommit(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			disConnection();
+		}
+		return bCheck;
+	}
+	
 }

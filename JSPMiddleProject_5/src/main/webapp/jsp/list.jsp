@@ -67,12 +67,18 @@ h3 {
 						</c:forEach>
 						<img src="re_icon.png">
 					</c:if>
-					<a href="detail.jsp?no=${vo.no }">
-					${vo.subject }
-					</a>
-					<c:if test="${vo.dbday==today }">
-						<img src="new.gif">
+					<c:if test="${vo.subject!=msg }">
+						<a href="detail.jsp?no=${vo.no }">
+							${vo.subject }
+						</a>
+						<c:if test="${vo.dbday==today }">
+							<img src="new.gif">
+						</c:if>
 					</c:if>
+					<c:if test="${vo.subject==msg }">
+						<span style="color: gray">${vo.subject }</span>
+					</c:if>
+					
 					</th>
 					<th width="15%" class="text-center">${vo.name }</th>
 					<th width="20%" class="text-center">${vo.dbday }</th>

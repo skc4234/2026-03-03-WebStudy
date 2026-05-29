@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	+ : 반드시 한번이상
+	| : 둘중한개 선택
+	* : 0번 이상
+	? : 0,1
+	default : 
+ -->
+<!ELEMENT member (list+)>
+<!ELEMENT list (no,name,address,(phone|tel),email?)>
+<!ELEMENT no (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT tel (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
