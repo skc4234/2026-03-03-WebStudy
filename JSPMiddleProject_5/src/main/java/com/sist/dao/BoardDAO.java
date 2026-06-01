@@ -97,7 +97,7 @@ public class BoardDAO {
 			rs.next();
 			count = rs.getInt(1);
 			rs.close();
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 		} finally {
 			disConnection();
