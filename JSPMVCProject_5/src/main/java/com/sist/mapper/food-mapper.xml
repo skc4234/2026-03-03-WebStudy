@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.food-mapper">
+	<!-- 
+	        id = key값 => 중복금지
+	        resultType => 결과(리턴)를 받는 데이터형
+	        prarmeterType => 매개변수데이터ㅓㅇ
+	        resultMap => VO가 여러개일 경우(JOIN)
+	
+	 -->
+	 <!-- 
+	 		<sql> : 중복된 코드 정의, 사용시 <include>
+	 		<select> : 데이터 검색
+	 		<insert> : 데이터 추가 (2개 사용 가능(sequence))
+	 		<update> : 데이터 수정
+	 		<delete> : 데이터 삭제
+	 		=> 하나의 태그에 하나의 SQL 문장만 가능
+	 					 =============> 서브쿼리 가능
+	 		
+	 		- BEGIN ... END를 사용하면 여러문장 한번에 처리 가능
+	  		<delete id="deleteAllData">
+			BEGIN
+				DELETE ...
+				DELETE ...
+			END
+			</delete>
+	 		
+	  -->
+	 <!-- 중복 코드 -->
+	 <sql id="select">
+	 	SELECT no,name,poster,address
+	 	FROM food
+	 </sql>
+	 <sql id="offset">
+	 	OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
+	 </sql>
+	 <sql id="total">
+		SELECT CEIL(COUNT(*)/12.0) FROM food
+	</sql>
+	 
+	 <!--  1. 맛집 리스트 출력 -->
+	<select id="foodListData" parameterType="int" resultType="FoodVO">
+	 <include refid="select"/>
+	 ORDER BY no ASC
+	 <include refid="offset" />
+	</select>
+	
+	<!-- 1-1. 총 페이지 수 -->
+	<select id="foodTotalPage" resultType="int">
+		<include refid="total" />
+	</select>
+	
+	<!-- 2. 상세보기 -->
+	<select id="foodDetailData" parameterType="int" resultType="FoodVO">
+		SELECT *
+		FROM food
+		WHERE no=#{no}
+	</select>
+	
+	<!-- 3. 맛집 검색(column: 음식종류, 주소, 맛집명 -->
+	<select id="foodFindData" resultType="FoodVO" parameterType="hashmap" >
+		<include refid="select" />
+		WHERE ${column} LIKE '%'||#{fd}||'%'
+		<include refid="offset" />
+	</select>
+
+	<!-- 3-1. 검색 결과 총 페이지 수 -->
+	<select id="foodFindTotalPage" resultType="int" parameterType="hashmap">
+		<include refid="total" />
+		WHERE ${column} LIKE '%'||#{fd}||'%'
+	</select>
+	
+</mapper>
