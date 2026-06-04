@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 1. VO 등록 -->
+	<typeAliases>
+		<typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
+		<typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.sist.vo.ReplyVO" alias="ReplyVO"/>
+	</typeAliases>
+	
+	<!-- Connection 정보 등록 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" /> <!-- JDBC(Auto Commit) / MANAGE(사용자 설정) -->
+			<dataSource type="POOLED"> <!-- POOLED : DBCP / UNPOOLED : JDBC -->
+				<!-- <propery> => setDriver(),setUrl(),setUsername(),setPassword() -->
+				<!-- {} => get메소드 호출 -->
+				<!-- property:변수선언 name:변수명 value:값 -->
+				<!-- DI : 의존성 주입 => set메소드 -->
+				<!-- 
+					Connection Pool : 미리 커넥션 연결
+					maxActive(8) / maxIdle(8) / maxWait(10000)
+					ㄴ최대 연결 수     ㄴ몇개 사용      ㄴ반환 기다리는 시간 
+				 -->
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="hr"/>
+				<property name="password" value="happy"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- Mapper 등록 -->
+	<mappers>
+		<mapper resource="com/sist/mapper/food-mapper.xml"/>
+		<mapper resource="com/sist/mapper/member-mapper.xml"/>
+		<mapper resource="com/sist/mapper/reply-mapper.xml"/>
+	</mappers>
+</configuration>
