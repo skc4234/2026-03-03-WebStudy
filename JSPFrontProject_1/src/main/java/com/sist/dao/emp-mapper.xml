@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	SELECT empno, ename, job, hiredate, dname, loc
+	FROM emp,dept
+	WHERE emp.deptno=dept.deptno
+	ORDER BY empno ASC
+	 
+	ps=conn.preparedStatement(sql);
+	ResultSet rs=ps.executeQuery();
+	while(rs.next()) {
+		EmpVO vo = new EmpVO();
+		vo.setEmpno(rs.getInt(1));
+		...
+		vo.getDvo().setDname(rs.getString(5));
+		vo.getDvo().setLoc(rs.getString(6));
+	}
+	rs.close();
+	 
+ -->
+<mapper namespace="com.sist.dao.emp-mapper">
+	<!-- 
+		JOIN : resultMap => 테이블이 2개 이상 연결
+		
+		vo.getDvo().setDname();
+		vo.getDvo().setLoc();
+	 -->
+	<resultMap type="com.sist.dao.EmpVO" id="empMap">
+		<result property="dvo.dname" column="dname"/>
+		<result property="dvo.loc" column="loc"/>
+	</resultMap>
+	<select id="empListData" resultMap="empMap">
+		SELECT empno, ename, job, TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, dname, loc
+		FROM emp,dept
+		WHERE emp.deptno=dept.deptno
+		ORDER BY empno ASC
+	</select>
+</mapper>
