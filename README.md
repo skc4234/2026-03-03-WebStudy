@@ -857,8 +857,8 @@
 		innerHTML() // 지정된 태그에 값을 첨부
  		```
  
- - 배열 함수
- 	```
+- 배열 함수
+	```
 	// 추가
 	push() // 마지막에 추가
 	
@@ -880,6 +880,79 @@
   	let names4=[...names,"춘향이"]
   	```
 
+- DOM(문서 객체 모델)
+	- 태그를 조작함으로써 태그를 자바스크립트에서 사용할 수 있게 해준다
+   	- 문서 객체 선택
+  		- 속성이 있는 경우
+   			- id : document.getElementById('id 속성값')
+   			- class : document.getElementsByClassName('class 속성값')
+   	    	- name : document.getElementsByName('name 속성값')
+   	    - 속성이 없는 경우
+   	  		- **document.querySelector("CSS 선택자")**
+   	      	```
+			- id : document.querySelector('#id명')
+			- class : document.querySelector('.class명')
+			- tag : document.querySelector('태그명')
+			- 자손 : document.querySelector('태그명 > 태그명')
+			- 후손 : document.querySelector('태그명 태그명')
+			- 속성선택자 : document.querySelector('태그명[속성=값]')
+			- 속성선택자 : document.querySelector('태그명[속성*=값]')
+			- 속성선택자 : document.querySelector('태그명[속성$=값]')
+			- 속성선택자 : document.querySelector('태그명[속성^=값]')
+			- 구조선택자 : document.querySelector('태그명:nth-child(2n)')
+   	       	```
+   	  	- 태그 선택 : document.getElementsByTagName(태그명)
+   	  	```
+		// 1개 선택
+		let h2=document.querySelector('h2') // JQuery : $('h2')
+		let h4_1=document.getElementById("h4")
+		
+		// 여러개 선택 => []
+		let h4_2=document.getElementsByClassName("h4")
+		let h4_3=document.getElementsByName("h4")
+		document.getElementsByTagName()
+		document.querySelectorAll()
+   	   	```
+    
+	- 문서 객체 조작
+  		- 글자 조작
+      		- textContent : 순수 텍스트 형식으로 출력
+          	- innerHTML : HTML 태그 포함 시 HTML 형식으로 출력
+        - 스타일 조작
+      		- .style.backgroundColor
+          	- 스타일 속성에서 -를 빼고 대문자를 붙이다
+        - 속성 조작 : 속성을 지정해서 값을 입력한다
+        - appendChild(태그) : 원하는 태그를 붙일 수 있다
+      	- body 태그는 document.body 로 사용한다
+
+	- 이벤트 처리
+   		- 이벤트 모델 종류
+       		- **인라인 이벤트 모델** : Vue, React 등에서 사용
+           		```
+				- <button onclick="함수호출">
+				- <button v-on:click="함수호출">
+				- <button @click="함수호출">
+             	```
+           	
+			- 고전 이벤트 모델 : JQuery : $().click(()=>{})
+           		```
+      			태그명.onclick(function(){})
+				```
+			
+   			- **이벤트 리스너 모델** : JQuery : $().on('click',()=>{})
+				```
+				태그명.addEventListener('click',function(){})
+      			```
+      	- 이벤트 속성 종류
+      		- 마우스 동작
+				- onclick : 버튼, 이미지 등 클릭
+				- onmouseover / onmouseout : 이미지 태그 등에서 마우스 out/over
+			- 키보드 동작
+				- onkeydown / onkeyup : <text> / <textarea> 태그 등에서 주로 사용
+			- \<select> 동작 : 장바구니 등
+				- onchange
+      	  	- \<form> 동작 : 회원가입 등
+				- onsubmit
 
 
 
