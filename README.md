@@ -954,8 +954,125 @@
       	  	- \<form> 동작 : 회원가입 등
 				- onsubmit
 
-
+- **내장 객체**
+	- Number
+		- parseInt() : 숫자 변환
+		- toLocaleString() : 1,000,000 ,표시
+	- String
+		- 문자열의 인덱스 : 0부터 시작(자바와 동일)
+		- length() : 문자열의 길이(비밀번호 유효성 검사, 입력 확인 등)
+		- indexOf() / lastIndexOf() : 문자 인덱스 번호 찾기
+		- replace(a,b) : a문자를 b문자로 변환
+		- replaceAll(regex) : 정규식을 이용한 변환
+		- split() : 문자열을 쪼개서 배열로 반환
+		- substring(startIndex, lastIndex) : startIndex부터 lastIndex-1까지 반환
+		- **substr(index, count)** : index부터 count개수 만큼(오라클 substring과 동일)
+		- trim() : 좌우 공백 제거
+		- startsWith / endsWith / contains(x) ==> **includes** : 문자열 포함 여부
+		
+	- Array
+		- push() : 배열의 마지막 행에 삽입
+		- pop() : 배열의 마지막 행 제거
+		- slice() : 원하는 인덱스 위치에서 배열을 나눔
+		- length() : 배열에 있는 데이터 개수 반환
+		- find() : 배열 찾기
+		
+	- Date
+		- year(년) : new Date().getFullYear()
+		- month(월) : new Date().getMonth() // 0부터 시작, 0=>1월
+		- date(일) : new Date().getDate()
+		- day(요일) : new Date().getDay() // 1=월요일, 0=일요일
+		- fullcalendar : 날짜 라이브러리, Date보다 편함
+	
+	- Math
+		- round() : 반올림
+		- ceil() : 올림
+		
+		
+	- **BOM(브라우저 내장객체)**
+		- window
+			- open() : 새로운 창을 띄움
+			- close() : 창닫기
+     		- onload() : 시작하자마자 호출되는 함수
+		- location
+			- href() : 화면 이동(sendRedirect와 동일)
+		- history
+			- back() : 이전 페이지(=go(-1)) 
+		- document
+			- 객체모델 선택자(querySelector 등) / 화면 출력(write 등)
+		- alert() : 알림 메시지 
 
 </details>
 
 ******
+
+
+## JQuery
+
+<details><summary>숨기기/펼치기</summary>
+
+### JQuery
+- JavaScript 라이브러리
+- 사용법
+	- doucment.querySelector('#btn')
+	- document.querySelectorAll('#btn')
+	- document.getElementById('btn')
+	- => **$('#btn')** 하나로 통일
+- 문서 객체 조작
+	- 속성 조작
+   		```
+		// <img src="">
+		// 바닐라 JS
+		let img=document.querySelector('img')
+		img.src=""
+		
+		// *JQuery
+		$('img').attr("src","")
+		```
+    - 스타일 조작
+  		```
+		// 태그.style.속성명 => css()
+		// 바닐라 JS
+		btn.style.color="red"
+		
+		// JQuery3
+		$('#btn').css("color","red")
+		
+		// *JQuery4
+		$('#btn').css({
+			"color":"red",
+			"backgroundColor":"yellow"
+		})
+		```
+    - 글자 조작
+  		```
+    	textContent => .text() / innerHTML => .html()
+    
+    	// 값읽기 : <input type="text">
+     	// 바닐라 JS
+		let input=document.querySelector('input')
+		input.value
+		
+		// *JQuery
+		$('input').val()
+
+    	// val() vs append()
+    	// val()은 덮어쓰지만 append()는 연속적으로 값을 추가할 수 있다
+		
+		// getter/setter
+		text(): getter, text("aaa"): setter
+		attr("src"): getter, attr("src",""): setter
+		val(): getter, val(""): setter
+		html(): getter, html(""): setter
+    	```
+    - 이벤트 처리
+  		```
+		// 바닐라 JS
+    	img.addEventListener('click',function(){})
+
+		// JQuery
+    	// *리스너 방식
+		$('img').on('click',function(){})
+		// 고전 방식
+		$('img').click(function(){})
+    	``` 
