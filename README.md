@@ -1075,4 +1075,27 @@
 		$('img').on('click',function(){})
 		// 고전 방식
 		$('img').click(function(){})
-    	``` 
+    	```
+
+### Ajax
+- Ajax
+	- JavaScript와 XML을 이용하여 비동기 통신, 즉 클라이언트와 서버간의 데이터를 주고받는 기술
+   	- 기존에는 화면 전체를 변경해야 했지만 변경되는 데이터만 바꿀 수 있게 해준다
+   	- 사용법
+  		```
+		$.ajax({
+			type:'POST', // 전송 방식(GET, POST)
+   			data:{page:"1"}, // 서버에 보낼 데이터
+   			url:'list_ajax.do', // 연동할 URL 주소, 보통 서버에서 JSON으로 보낸 주소와 연동한다
+   			success:function(response) { // 서버에서 받은 데이터
+				// 서버에서 받은 데이터(response) 처리
+   			}
+  		})
+   		```
+
+	
+
+
+</details>
+
+******
