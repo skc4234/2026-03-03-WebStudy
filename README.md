@@ -1065,17 +1065,38 @@
 		val(): getter, val(""): setter
 		html(): getter, html(""): setter
     	```
-    - 이벤트 처리
-  		```
-		// 바닐라 JS
-    	img.addEventListener('click',function(){})
+	- 클래스 조작
+   		- **addClass()** : 클래스 속성 추가
+       	- **removeClass()** : 클래스 속성 제거
+       	```
+        // class="active" 속성 추가/제거 시 사용
+		$(this).addClass('active')
+		$('.content').removeClass('active')
+        ```
+- 이벤트 처리
+	```
+	// 바닐라 JS
+   	img.addEventListener('click',function(){})
 
-		// JQuery
-    	// *리스너 방식
-		$('img').on('click',function(){})
-		// 고전 방식
-		$('img').click(function(){})
-    	```
+	// JQuery
+    // *리스너 방식
+	$('img').on('click',function(){})
+	// 고전 방식
+	$('img').click(function(){})
+    ```
+
+- JQuery 시각 효과
+	- **hide**
+		- 해당 태그를 감추기
+		- CSS3 : display: none;
+	- **show**
+		- 해당 태그 보여주기
+		- CSS3 : display: '';
+	- toggle
+		- ON/OFF 등의 버튼
+    - show(1000) : 1초의 속도동안 시각효과가 일어난다. default는 500
+  	- 애니메신
+
 
 ### Ajax
 - Ajax
@@ -1093,7 +1114,18 @@
   		})
    		```
 
-	
+- DOM 객체 생성/추가
+	- **append(객체)**
+   		- 해당 객체 뒤에 추가
+   	- **prepend(객체)**
+		- 해당 객체 앞에 추가
+   	- after(객체)
+  		- 외부에 추가
+   	```
+	$('#list').append(newItem)
+    $('#list').prepend(newItem)
+    $('#list').after(newItem)
+    ```
 
 
 </details>
