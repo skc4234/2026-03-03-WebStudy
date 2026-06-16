@@ -46,4 +46,23 @@ public class ReplyDAO {
 		if(session!=null) session.close();
 	}
 	
+/*
+<update id="replyUpdate" parameterType="hashMap">
+	UPDATE reply SET msg=#{msg} WHERE no=#{no}
+</update>
+ */
+	// Spring
+	// @Update("UPDATE reply SET msg=#{msg} WHERE no=#{no}")
+	public static void replyUpdate(Map map) {
+		SqlSession session=ssf.openSession(true); // AutoCommit
+		session.update("replyUpdate",map); // insert==update==delete
+		if(session!=null) session.close();
+	}
+	
+	// 삭제
+	public static void replyDelete(int no) {
+		SqlSession session=ssf.openSession(true); // AutoCommit
+		session.delete("replyDelete",no);
+		if(session!=null) session.close();
+	}
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import lombok.Getter;
 
+// 모든 DAO에서 사용되는 공통 소스 ==> 공통 모듈
 public class CreateSqlSessionFactory {
 	@Getter
 	private static SqlSessionFactory ssf;

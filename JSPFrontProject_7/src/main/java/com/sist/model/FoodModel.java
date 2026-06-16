@@ -8,7 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.sist.vo.*;
 import com.sist.dao.*;
+
+import java.io.PrintWriter;
 import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 @Controller
 public class FoodModel {
@@ -47,5 +52,74 @@ public class FoodModel {
 		request.setAttribute("rcount", rList.size());
 		
 		return "../main/main.jsp"; // forward : request 유지
+	}
+	// Vue(ThymeLeaf) / Jquery(JSP) ==> CDN 방식
+	// React(단독) => SpringBoot+NodeJS
+	
+
+	@RequestMapping("food/find.do")
+	public String food_find(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../food/find.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("food/find_ajax.do")
+	public void food_find_ajax(HttpServletRequest request, HttpServletResponse response) {
+		String fd=request.getParameter("fd"); // <input type="text">
+		//if(fd==null) fd="마포";
+		String col=request.getParameter("col"); // <select><option> name,address,type
+		//if(col==null) col="address";
+		String page=request.getParameter("page");
+		if(page==null) page="1";
+		int curPage=Integer.parseInt(page);
+		int start=(curPage*12)-12;
+		Map map=new HashMap();
+		map.put("column", col);
+		map.put("fd", fd);
+		map.put("start", start);
+		List<FoodVO> list=FoodDAO.foodFindData(map);
+		int totalPage=FoodDAO.foodFindTotalPage(map);
+		final int BLOCK=10;
+		int startPage=((curPage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curPage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalPage) endPage=totalPage;
+		
+		// JSON으로 변경 후 전송
+		try {
+			// List => JSONArray / VO => JSONObject
+			JSONArray arr=new JSONArray(); // [{},{},{},...]
+			int j=0;
+			for(FoodVO vo: list) {
+				JSONObject obj=new JSONObject();
+				obj.put("no", vo.getNo());
+				obj.put("name", vo.getName());
+				obj.put("poster", vo.getPoster());
+				obj.put("address", vo.getAddress());
+				
+				if(j==0) { // 한번만 수행
+					obj.put("curPage", curPage);
+					obj.put("totalPage", totalPage);
+					obj.put("startPage", startPage);
+					obj.put("endPage", endPage);
+				}
+				arr.add(obj);
+				j++;
+			}
+			
+			// arr에 있는 데이터를 Ajax(JavaScript)로 보냄 ==> RestFul
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.write(arr.toJSONString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	@RequestMapping("food/movie.do")
+	public String food_movie(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("main_jsp", "../food/movie.jsp");
+		return "../main/main.jsp";
 	}
 }

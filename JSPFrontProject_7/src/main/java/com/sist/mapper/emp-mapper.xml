@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.emp-mapper">
+<!-- 
+	<if>: 조건문
+	<choose><when>: 다중조건문
+	<trim>: 제거/추가
+	<foreach>: 반복문
+	<bind>: 중복된 데이터를 변수형으로 처리
+	<where>,<set>
+ -->
+<select id="empFindData" resultType="EmpVO" parameterType="EmpVO">
+	SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, deptno
+	FROM emp
+	<where> <!-- 자동으로 WHERE 절 생성, 첫번째 행 OR/AND 제거 -->
+		<if test="empno!=null and empno!=0">
+			AND empno=#{empno}
+		</if>
+		<if test="ename!=null and ename!=''">
+			AND ename LIKE '%'||#{ename}||'%'
+		</if>
+		<if test="deptno!=null and deptno!=0">
+			AND deptno=#{deptno}
+		</if>
+	</where>
+<!-- 	ORDER BY empno ASC -->
+</select>
+<select id="empFindData2" resultType="EmpVO" parameterType="String">
+	<bind name="keyword" value="'%'+ename+'%'"/>
+	<!-- 
+		<bind>: 대소문자 구분없이 사용 가능
+		<bind name="uname" value="ename.toUpperCase()" />
+	 -->
+	SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, deptno
+	FROM emp
+	WHERE ename LIKE #{keyword}
+</select>
+<select id="empFindData3" resultType="EmpVO" parameterType="String">
+	SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, deptno
+	FROM emp
+	WHERE
+	<choose>
+		<when test="job=='MANAGER'">sal>=2400</when>
+		<when test="job=='SALESMAN'">sal>=1500</when>
+		<otherwise>
+			sal>=1000
+		</otherwise>
+	</choose>
+</select>
+<select id="empFindData4" resultType="EmpVO" parameterType="hashmap">
+	SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, deptno
+	FROM emp
+	WHERE empno IN <!-- (7788,7700,7811) -->
+	<foreach collection="data" item="emp" separator="," open="(" close=")">
+		#{emp}
+	</foreach>
+</select>
+<select id="empGetData" resultType="EmpVO">
+	SELECT empno,ename
+	FROM emp
+	ORDER BY empno ASC
+</select>
+<!--
+	1. <if>
+	2. <foreach collection="data">
+	3. <choose>
+	4. <where>
+	5. <trim>
+	6. <bind>
+	
+-->
+<!-- 
+	trim
+		- prefix : 앞에 추가
+		- prefixOverrides : 앞에 내용 삭제
+		- suffix : 뒤에 추가
+		- suffixOverrides : 뒤에 내용 삭제
+ -->
+<select id="empFindData5" resultType="EmpVO" parameterType="EmpVO">
+	SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday, deptno
+	FROM emp
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="ename!=null and ename!=''">
+			AND ename LIKE '%'||#{ename}||'%'
+		</if>
+		<if test="job!=null and job!=''">
+			AND job LIKE '%'||#{job}||'%'
+		</if>
+	</trim>
+</select>
+</mapper>
