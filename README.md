@@ -66,6 +66,25 @@
 - MyBatis
 	- Config.xml: 환경설정 파일, Connection 설정
 	- mapper.xml: 테이블당 sql 문장 파일
+  		```
+    	// VO와 column명을 다르게 할 경우 resultMap으로 묶어서 사용
+		<resultMap type="com.sist.vo.GoodsVO" id="goodsMap">
+			<result property="name" column="goods_name"/>
+			<result property="sub" column="goods_sub"/>
+			<result property="price" column="goods_price"/>
+			<result property="fprice" column="goods_first_price"/>
+			<result property="delivery" column="goods_delivery"/>
+			<result property="poster" column="goods_poster"/>
+			<result property="discount" column="goods_discount"/>
+		</resultMap>
+
+    	<select id="goodsListData" resultMap="goodsMap" parameterType="int">
+			SELECT no,goods_name,goods_price,goods_poster
+			FROM goods_all
+			ORDER BY no ASC
+			OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
+		</select>
+    	```
 	- DAO
 		- selectList("ID명", 매개변수) => List
 		- selectOne("ID명", 매개변수) => 단일 데이터형
