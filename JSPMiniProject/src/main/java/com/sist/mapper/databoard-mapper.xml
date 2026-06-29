@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.databoard-mapper">
+<select id="boardListData" resultType="DataBoardVO" parameterType="int">
+	SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+	FROM mvcdataboard
+	ORDER BY no DESC
+	OFFSET #{start} ROWS FETCH NEXT 10 ROWS ONLY
+</select>
+
+<select id="boardRowCount" resultType="int">
+	SELECT COUNT(*) FROM mvcdataboard
+</select>
+
+<insert id="boardInsert" parameterType="DataBoardVO">
+	<!-- SEQUENCE -->
+	<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		SELECT NVL(MAX(no)+1,1) as no FROM mvcdataboard
+	</selectKey>
+		INSERT INTO mvcdataboard(no,name,subject,content,pwd,filename,filesize)
+		VALUES(#{no},#{name},#{subject},#{content},#{pwd},#{filename},#{filesize})
+</insert>
+
+<select id="boardGetPassword" resultType="string" parameterType="int">
+	SELECT password FROM mvcdataboard WHERE no=#{no}s
+</select>
+<update id="boardUpdate" parameterType="DataBoardVO">
+	UPDATE mvcdataboard SET
+	name=#{name},subject=#{subject},content=#{content},filename=#{filename},filesize=#{filesize}
+	WHERE no=#{no}
+</update>
+
+<!-- 파일 삭제를 위해서 파일 정보 가져오기 -->
+<select id="boardFileInfoData" resultType="DataBoardVO" parameterType="int">
+	SELECT filename,filesize
+	FROM mvcdataboard
+	WHERE no=#{no}
+</select>
+<delete id="boardDelete" parameterType="int">
+	DELETE FROM mvcdataboard WHERE no=#{no}
+</delete>
+
+<!-- 상세보기 -->
+<update id="boardHitIncrement" parameterType="int">
+	UPDATE mvcdataboard SET hit=hit+1 WHERE no=#{no}
+</update>
+<select id="boardDetailData" resultType="DataBoardVO" parameterType="int">
+	SELECT no,name,subject,content,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,
+	hit,filename,filesize
+	FROM mvcdataboard WHERE no=#{no}
+</select>
+<!-- 
+	묻고 답하기: 유저-관리자
+	공지사항: 관리자
+ -->
+</mapper>
