@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- Connection 관련 -->
+<configuration>
+	<properties resource="db.properties"/>
+	<settings>
+		<!-- **동일 쿼리 반복수행 시 DB 조회없이 캐시에서 읽어들임 -->
+		<setting name="cacheEnabled" value="true"/>
+		
+		<!-- **컬럼명: user_name+userName -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		
+		<!-- **값이 null인 경우 setter 호출 -->
+		<setting name="callSettersOnNulls" value="true"/>
+		
+		<!-- SQL 실행 로그 출력 -->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.sist.vo.BoardVO" alias="BoardVO"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+				<property name="poolMaximumActiveConnections" value="${maxActive}"/>
+				<property name="poolMaximumIdleConnections" value="${maxIdle}"/>
+				<property name="poolTimeToWait" value="${maxWait}"/>
+				<!-- 설정이 없는 경우
+					maxActive=8/maxIdle=8/maxWait=10000 
+				 -->
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/sist/dao/board-mapper.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis 단점 : 두개의 SQL문장을 실행할 수 없다 -->
+
+<mapper namespace="com.sist.dao.board-mapper">
+	<!-- 반복문장(ex.동적 쿼리) -->
+	<sql id="where-no">
+	WHERE no=#{no}
+	</sql>
+	
+	<select id="boardListData" resultType="BoardVO" parameterType="int">
+		SELECT no,name,subject,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,hit
+		FROM jspboard
+		ORDER BY no DESC
+		OFFSET #{start} ROWS FETCH NEXT 10 ROWS ONLY
+	</select>
+	
+	<select id="boardRowCount" resultType="int">
+		SELECT COUNT(*) FROM jspboard
+	</select>
+	
+	<insert id="boardInsert" parameterType="BoardVO">
+		<!-- 자동 증가 번호(squence 없을때) -->
+		<!-- <selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(no)+1,1) as no FROM jspboard
+		</selectKey> -->
+		<!-- #{}: '', ${}: 일반 문자열(column명, table명) -->
+		INSERT INTO jspboard(name,subject,content,pwd) VALUES(#{name},#{subject},#{content},#{pwd})
+	</insert>
+	
+	<update id="hitIncrement" parameterType="int">
+		UPDATE jspboard SET hit=hit+1
+		<include refid="where-no"/>
+	</update>
+	<select id="boardDetailData" resultType="BoardVO" parameterType="int">
+		SELECT no,name,subject,content,hit,TO_CHAR(regdate,'YYYY-MM-DD') as dbday 
+		FROM jspboard
+		<include refid="where-no"/>
+	</select>
+	
+	<!-- 삭제 -->
+	<select id="boardGetPassword" resultType="string" parameterType="int">
+		SELECT pwd FROM jspboard WHERE no=#{no}
+	</select>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM jspboard WHERE no=#{no}
+	</delete>
+	
+	<!-- 수정 -->
+	<!-- 1. 이전 데이터 출력 => boardDetailData -->
+	<!-- 2. 비밀번호 검색 => boardGetPassword -->
+	<!-- 3. update -->
+	<update id="boardUpdate" parameterType="BoardVO">
+		UPDATE jspboard SET
+		name=#{name},subject=#{subject},content=#{content}
+		WHERE no=#{no}
+	</update>
+	<!-- 처리 => 보여주는 화면
+		1. list.do => insert, delete
+		2. detail.do => update
+	 -->
+</mapper>
